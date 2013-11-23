@@ -1,0 +1,6 @@
+seg_big.sql                  Information from dba_tab_modifications
+seg_info.sql                 Detailinformation for a given Segment-Name
+tbs.sql                      Tablespace size information
+tbs8i.sql                    Tablespace size information 8i compatible
+tbsinfo.sql                  tablespace details (no size information!)
+usage_assm.sql               Detailinformation for an assm-Segment

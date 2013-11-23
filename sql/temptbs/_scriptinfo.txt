@@ -1,0 +1,2 @@
+readdtempfile.sql            drop and add the given tempfile to a temp-TBS
+tempseg_usage.sql            display temp segment Usage

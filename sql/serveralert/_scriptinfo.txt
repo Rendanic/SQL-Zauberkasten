@@ -1,0 +1,9 @@
+alert_history.sql            Displays Server Generated Alert History
+alert_thresholds.sql         Lists all registered alert thresholds
+alert_types.sql              Lists all Types from V$ALERT_TYPES
+alertall.sql                 List of all old and actual alerts
+alerts.sql                   List of actual alerts
+set_tbs_off.sql              Disable an alert for a known Tablespace
+set_tbs_threshold.sql        set a threshold for a given Tablespace
+set_threshold_example.sql    examples for setting an alert
+

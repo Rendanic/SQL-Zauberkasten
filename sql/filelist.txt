@@ -1,0 +1,368 @@
+.
+├── adr
+│   ├── diag_info.sql
+│   └── _scriptinfo.txt
+├── asm
+│   ├── asm_disk1.sql
+│   ├── asm_diskgroup.sql
+│   ├── asm_files.sql
+│   └── _scriptinfo.txt
+├── audit
+│   ├── deploy_automatic_audit_purging.sql
+│   ├── depoy_automatic_audit_purging.sql
+│   └── _scriptinfo.txt
+├── buffercache
+│   ├── block_stat.sql
+│   ├── bufferchain
+│   │   ├── info.txt
+│   │   ├── latchdetails.sql
+│   │   ├── latchstat.sql
+│   │   └── _scriptinfo.txt
+│   ├── obj_statistic.sql
+│   └── _scriptinfo.txt
+├── database
+│   ├── block_corruption.sql
+│   ├── dba_cpu_usage_stat.sql
+│   ├── dba_registry.sql
+│   ├── dbc_license.sql
+│   ├── feauture_usage_statistics.sql
+│   ├── flash_logfile.sql
+│   ├── flash_stat.sql
+│   ├── hist_database_instance_all.sql
+│   ├── hist_database_instance.sql
+│   ├── log_hist10.sql
+│   ├── log_hist.sql
+│   ├── log_hist_stat1.sql
+│   ├── network_acl.sql
+│   ├── pgastat.sql
+│   ├── recyclebinusage.sql
+│   ├── registry.sql
+│   ├── _scriptinfo.txt
+│   ├── sysmetric_history.sql
+│   ├── vd10.sql
+│   ├── vd.sql
+│   └── vi.sql
+├── datafile
+│   ├── autoextend_off.sql
+│   ├── dbfi.sql
+│   ├── dbfi_temp.sql
+│   ├── dbf_max_block8i.sql
+│   ├── dbf_max_block.sql
+│   ├── dbf_minsize.sql
+│   ├── rename_files.sql
+│   └── _scriptinfo.txt
+├── datapump
+│   ├── dpjob.sql
+│   └── _scriptinfo.txt
+├── dbms_job
+│   ├── jobinfo.sql
+│   ├── jobrun.sql
+│   └── _scriptinfo.txt
+├── directory_description.txt
+├── ee
+│   ├── cdc
+│   │   ├── apply.sql
+│   │   ├── change_tables.sql
+│   │   └── _scriptinfo.txt
+│   ├── dg
+│   │   ├── logstdb_events.sql
+│   │   ├── logstdb_events_trx.sql
+│   │   ├── logstdb_log.sql
+│   │   ├── logstdb_progress.sql
+│   │   └── _scriptinfo.txt
+│   ├── diag
+│   │   ├── ash
+│   │   │   ├── ash2.sql
+│   │   │   ├── ash.sql
+│   │   │   └── _scriptinfo.txt
+│   │   └── awr
+│   │       ├── awr_extr_dbid.sql
+│   │       ├── awr_modify.sql
+│   │       ├── awrrpt_dbid.sql
+│   │       ├── awrrpthtml_dbid.sql
+│   │       ├── awr_snaps_dbid.sql
+│   │       ├── awr_snap_stats2_dbid.sql
+│   │       ├── awr_snap_stats_dbid.sql
+│   │       ├── awrsqlrpt_dbid.sql
+│   │       ├── awr_tbs_hist_dbid.sql.sql
+│   │       ├── create_snapshot.sql
+│   │       └── _scriptinfo.txt
+│   ├── index
+│   │   ├── idx_frag_bitmap_rebuild.sql
+│   │   ├── idx_frag_bitmap.sql
+│   │   ├── idx_frag_rebuild.sql
+│   │   ├── idx_rebuild.sql
+│   │   ├── idx_rebuild_unusable.sql
+│   │   └── _scriptinfo.txt
+│   ├── _README.1ST_
+│   └── tuning
+│       ├── dbms_monitor
+│       └── sqltune
+│           ├── accept.sql
+│           ├── beispiele.txt
+│           ├── create_from_awr.sql
+│           ├── create_sqlid.sql
+│           ├── disable.sql
+│           ├── display.sql
+│           ├── drop.sql
+│           ├── journal.sql
+│           ├── list_prof.sql
+│           ├── _scriptinfo.txt
+│           ├── sql_monitor_rep.sql
+│           └── status.sql
+├── filelist.txt
+├── gc
+│   └── report
+│       ├── gc_tbs_info.sql
+│       └── _scriptinfo.txt
+├── index
+│   ├── idx_columns.sql
+│   ├── idx_frag.sql
+│   ├── idx_info.sql
+│   ├── idx_parallel.sql
+│   ├── idx_unusable.sql
+│   └── _scriptinfo.txt
+├── lob
+│   ├── lob_info.sql
+│   └── _scriptinfo.txt
+├── login.sql
+├── mview
+│   ├── mview_info.sql
+│   └── _scriptinfo.txt
+├── object
+│   ├── changed_objects.sql
+│   ├── dba_errors.sql
+│   ├── db_links.sql
+│   ├── dbms_metadata2.sql
+│   ├── dbms_metadata.sql
+│   ├── dict.sql
+│   ├── inv_objects8i.sql
+│   ├── inv_objects.sql
+│   ├── obj_dependencies.sql
+│   ├── obj_infoid.sql
+│   ├── obj_info.sql
+│   └── _scriptinfo.txt
+├── parameter
+│   ├── ksppi.sql
+│   ├── nondefaultparam.sql
+│   ├── paraminfo.sql
+│   ├── reset_parameter.sql
+│   ├── _scriptinfo.txt
+│   └── spparameter.sql
+├── px
+│   ├── pqslave.sql
+│   ├── pxprocessstat.sql
+│   ├── pxsession.sql
+│   └── _scriptinfo.txt
+├── recovery
+│   ├── log.sql
+│   ├── progress.sql
+│   └── _scriptinfo.txt
+├── release_notes.txt
+├── rman
+│   ├── archive_volumen.sql
+│   ├── catalog
+│   │   ├── catalog_backuppiece.sql
+│   │   ├── check_old_rman_dbs.sql
+│   │   ├── delete_db_from_rman.sql
+│   │   ├── delete_old_incarnation.sql
+│   │   ├── _scriptinfo.txt
+│   │   └── status_all_dbs.sql
+│   ├── clear_ctl_deleted_objects.sql
+│   ├── incarnation.sql
+│   ├── output.sql
+│   ├── restorepoint.sql
+│   ├── _scriptinfo.txt
+│   ├── set_newname.sql
+│   ├── status_all.sql
+│   ├── status_archive.sql
+│   ├── status_archive_stat.sql
+│   ├── status_backup.sql
+│   ├── status_duplicate.sql
+│   ├── status_rman_backup.sql
+│   ├── status_running.sql
+│   └── vbackup_async.sql
+├── scheduler
+│   ├── beispiele.sql
+│   ├── runbg.sql
+│   ├── runfg.sql
+│   ├── schedulerinfo2.sql
+│   ├── schedulerinfo3.sql
+│   ├── schedulerinfo.sql
+│   ├── schedulerlog.sql
+│   ├── schedulerprog.sql
+│   ├── schedulerrun.sql
+│   ├── schedulersubmit_external.sql
+│   ├── schedulersubmit.sql
+│   ├── schedulerwindow.sql
+│   ├── _scriptinfo.txt
+│   ├── start_all.sql
+│   └── stop_all.sql
+├── serveralert
+│   ├── alertall.sql
+│   ├── alert_history.sql
+│   ├── alerts.sql
+│   ├── alert_thresholds.sql
+│   ├── alert_types.sql
+│   ├── _scriptinfo.txt
+│   ├── set_tbs_off.sql
+│   ├── set_tbs_threshold.sql
+│   └── set_threshold_example.sql
+├── session
+│   ├── cancel_exec.sql
+│   ├── cs.sql
+│   ├── hash2sqlid.sql
+│   ├── kill_session.sql
+│   ├── lock_internal.sql
+│   ├── nlsf.sql
+│   ├── ospid.sql
+│   ├── osstat.sql
+│   ├── pid2sid.sql
+│   ├── resumable.sql
+│   ├── _scriptinfo.txt
+│   ├── sessioni.sql
+│   ├── sistat.sql
+│   ├── slo.sql
+│   ├── spid4killed.sql
+│   ├── sql10.sql
+│   ├── sql8i.sql
+│   ├── sql9.sql
+│   ├── sqlactive2.sql
+│   ├── sqlactive3.sql
+│   ├── sqlactive.sql
+│   ├── sqlbind.sql
+│   ├── sqliddetails.sql
+│   ├── sw10all.sql
+│   ├── sw10block.sql
+│   ├── sw10trace.sql
+│   ├── sw2.sql
+│   ├── swall.sql
+│   ├── swtop20.sql
+│   ├── swtop.sql
+│   ├── transaction10.sql
+│   ├── transaction.sql
+│   └── wait_hist.sql
+├── sga
+│   ├── gather_session_cached_cursors.sql
+│   ├── librarycache.sql
+│   ├── no_bind.sql
+│   ├── pinned_objects.sql
+│   ├── pin_stat.sql
+│   ├── reserved_info.sql
+│   ├── resize_ops_errors.sql
+│   ├── resize_ops.sql
+│   ├── rowcache.sql
+│   ├── _scriptinfo.txt
+│   ├── sga_dyn_components.sql
+│   ├── sga_free.sql
+│   ├── sga_heap.sql
+│   ├── some_cursor_stats.sql
+│   └── subpool_cnt.sql
+├── shared
+│   ├── dispatcher.sql
+│   ├── _scriptinfo.txt
+│   └── server.sql
+├── stat
+│   ├── aux_stat.sql
+│   ├── export_schema_stats.sql
+│   ├── gather_schema_stale9i.sql
+│   ├── get_param.sql
+│   ├── import_schema_stats_part.sql
+│   ├── import_schema_stats.sql
+│   ├── import_table_stats.sql
+│   ├── ind_stale.sql
+│   ├── lock_schema_stat.sql
+│   ├── modify_stats_jobs_example_10.sql
+│   ├── restore_tab_stat.sql
+│   ├── _scriptinfo.txt
+│   ├── stat_flush.sql
+│   ├── stat_operation.sql
+│   ├── tab_histograms2.sql
+│   ├── tab_histograms_part.sql
+│   ├── tab_histograms.sql
+│   ├── tab_history2.sql
+│   ├── tab_history.sql
+│   └── tab_stale.sql
+├── statspack
+│   ├── perfstat_sqlplan.sql
+│   ├── _scriptinfo.txt
+│   ├── spcreate
+│   │   ├── job_purge.sql
+│   │   ├── _scriptinfo.txt
+│   │   ├── statspack_configuration.sql
+│   │   ├── statspack_create.sql
+│   │   └── statspack_job.sql
+│   ├── spinstance.sql
+│   ├── spreport_dbid.sql
+│   ├── sprepsql_dbid.sql
+│   └── spsnap_dbid.sql
+├── table
+│   ├── col_info.sql
+│   ├── long_non_sys_owner.sql
+│   ├── _scriptinfo.txt
+│   ├── tab_frag.sql
+│   ├── tab_idx.sql
+│   ├── tab_info8i.sql
+│   ├── tab_info.sql
+│   ├── tab_modification.sql
+│   ├── tab_parallel.sql
+│   ├── tab_shrink.sql
+│   └── tab_stat.sql
+├── tbs
+│   ├── _scriptinfo.txt
+│   ├── seg_big.sql
+│   ├── seg_info.sql
+│   ├── tbs8i.sql
+│   ├── tbsinfo.sql
+│   ├── tbs.sql
+│   └── usage_assm.sql
+├── temptbs
+│   ├── readdtempfile.sql
+│   ├── _scriptinfo.txt
+│   └── tempseg_usage.sql
+├── trace
+│   ├── logon_trigger.sql
+│   ├── optimizer
+│   │   ├── parsetrace_disable.sql
+│   │   ├── parsetrace_enable.sql
+│   │   └── _scriptinfo.txt
+│   ├── orad_tfn.sql
+│   ├── orad_trace_off.sql
+│   ├── orad_trace_on.sql
+│   ├── _scriptinfo.txt
+│   ├── setev.sql
+│   ├── stopall_sqltrace.sql
+│   └── stop_sqltrace.sql
+├── undo
+│   ├── rollbacksegs.sql
+│   ├── _scriptinfo.txt
+│   ├── undostat10all.sql
+│   ├── undostat10.sql
+│   ├── undostatall.sql
+│   └── undostat.sql
+├── user
+│   ├── dba_tab_priv.sql
+│   ├── network_acls.sql
+│   ├── privs4user_spool.sql
+│   ├── privs4user.sql
+│   ├── savepwd.sql
+│   ├── _scriptinfo.txt
+│   ├── spool_create_role_non_sys.sql
+│   ├── spool_create_user_non_sys.sql
+│   ├── spool_privs4user_non_sys.sql
+│   ├── spool_public_synonym_non_sys.sql
+│   ├── userinfo2.sql
+│   └── userinfo.sql
+└── xplan
+    ├── cs.sql
+    ├── dplan9i.sql
+    ├── dplanallstatslast.sql
+    ├── dplanawr.sql
+    ├── dplansid.sql
+    ├── dplan.sql
+    ├── dplansqlidbind.sql
+    ├── dplansqlid.sql
+    ├── dplansys.sql
+    └── _scriptinfo.txt
+
+46 directories, 319 files

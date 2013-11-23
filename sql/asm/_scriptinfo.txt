@@ -1,0 +1,3 @@
+asm_diskgroup.sql            list v$asm_diskgroup with some details
+asm_disk1.sql                list information for all asm-disks
+asm_files.sql                list alls files on asm-Instance for given name

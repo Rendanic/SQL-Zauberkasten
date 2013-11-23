@@ -1,0 +1,5 @@
+perfstat_sqlplan.sql         Display plan from statspack data
+spinstance.sql               Instance Inforamtion from stats$database_instance
+spreport_dbid.sql            Creates a spreport for given parameter
+sprepsql_dbid.sql            Creates a sprepsql for given parameter
+spsnap_dbid.sql              List snapshots from stats$snapshot for DBID

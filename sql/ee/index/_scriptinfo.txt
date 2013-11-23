@@ -1,0 +1,5 @@
+idx_frag_bitmap.sql          bitmap-idx with blevel>2 and leaf_blocks > 100000
+idx_frag_bitmap_rebuild.sql  'alter index .. rebuild online' for bitmap-indexes
+idx_frag_rebuild.sql         'alter index .. rebuild online;' for frag. indexes
+idx_rebuild.sql              'alter index .. rebuild online;' for given index
+idx_rebuild_unusable.sql     'alter index .. rebuild online;' for unusable idx

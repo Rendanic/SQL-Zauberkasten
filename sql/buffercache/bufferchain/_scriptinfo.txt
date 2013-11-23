@@ -1,0 +1,3 @@
+info.txt                     Infos regarding some buffer-cache statistics
+latchdetails.sql             Buffercache latch details for a given latch
+latchstat.sql                Buffercache statistic summary

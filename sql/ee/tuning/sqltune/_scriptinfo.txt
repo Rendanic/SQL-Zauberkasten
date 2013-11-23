@@ -1,0 +1,11 @@
+list_prof.sql                Displays SQL_Profiles from Data-Dictionary
+status.sql                   Status from DBA_ADVISOR_LOG for a task_name
+accept.sql                   accept a sql-profile for a tuning task
+beispiele.txt                Diverse Beispiele fuer den Tuning-Advisor
+disable.sql                  Disables a sql-profile
+display.sql                  Displays a report for a tuning task
+journal.sql                  Displays a journal for a tuning task
+drop.sql                     Drops a tuning task
+create_sqlid.sql             create a tuning task for given sql_id from shared-pool
+create_from_awr.sql          creates a tuning from AWR-snapshot range
+sql_monitor_rep.sql          Displays SQL-Monitor Report for given sql_id

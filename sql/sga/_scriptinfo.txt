@@ -1,0 +1,13 @@
+librarycache.sql             Display statistics from v$librarycache
+gather_session_cached_cursors.sql statistics for session cached cursors
+no_bind.sql                  get SQLs without bind-variables
+pin_stat.sql                 statistical information for pinned objects
+pinned_objects.sql           Display pinned objects from shared_pool
+reserved_info.sql            overall statistics from shared_pool
+resize_ops.sql               all operations form v$sga_resize_ops
+resize_ops_errors.sql        resize  operations form v$sga_resize_ops with errors
+rowcache.sql                 rowcache information from shared_pool
+sga_dyn_components.sql       memory sizing for buffers in SGA
+sga_free.sql                 freeable memory in SGA
+sga_heap.sql                 detail sga_heap from SGA
+subpool_cnt.sql              get number of subpools from shared_pool

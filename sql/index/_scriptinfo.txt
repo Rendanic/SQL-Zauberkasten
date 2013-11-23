@@ -1,0 +1,5 @@
+idx_columns.sql              List columns of given Index
+idx_frag.sql                 List indizes ordered by fragmentation
+idx_info.sql                 Some Information for given Index
+idx_parallel.sql             parallel attributes from tables and indexes
+idx_unusable.sql             unusable indexes in the database

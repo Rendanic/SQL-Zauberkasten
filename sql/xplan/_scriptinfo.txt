@@ -1,0 +1,8 @@
+dplan.sql                    display plan for last explain in current session
+dplan9i.sql                  display plan for statement_id
+dplanallstatslast.sql        Display plan for last sql with 'allstats_last'
+dplanawr.sql                 display plan for sql_id from AWR
+dplansid.sql                 display plan for running sql on session with SID
+dplansqlid.sql               display plan for SQL_ID from shared_pool
+dplansqlidbind.sql           display plan for SQL_ID from shared_pool with bind values
+dplansys.sql                 display plan for current session, switching to sys before

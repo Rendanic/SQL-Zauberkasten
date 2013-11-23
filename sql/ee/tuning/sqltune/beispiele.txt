@@ -1,0 +1,32 @@
+set verify off
+
+BEGIN
+  DBMS_SQLTUNE.ALTER_SQL_PROFILE(
+     name            => 'my_sql_profile', 
+     attribute_name  => 'STATUS', 
+     value           => 'DISABLED');
+END;
+/
+
+BEGIN
+  DBMS_SQLTUNE.DROP_SQL_PROFILE(name => 'my_sql_profile');
+END;
+/
+
+
+Profile anzeigen:
+select * from DBA_SQL_PROFILES
+
+
+
+BEGIN
+  DBMS_SQLTUNE.ALTER_SQL_PROFILE(
+     name            => 'my_sql_profile',
+     attribute_name  => 'BIND_LIST',
+     value           => sql_binds(anydata.convertvarchar2('test')
+                                 ,anydata.convertvarchar2('test')
+                                 )
+     );
+END;
+/
+

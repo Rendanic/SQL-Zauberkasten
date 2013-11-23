@@ -1,0 +1,5 @@
+catalog_backuppiece.sql      create catalog backuppiece from catalog
+check_old_rman_dbs.sql       displays database with backups older then n days
+delete_db_from_rman.sql      unregister database without deadlocks from catalog
+delete_old_incarnation.sql   delete backups older then 180days from catalog
+status_all_dbs.sql           displays backupstate for all DBs in RMAN-Repository

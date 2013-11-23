@@ -1,0 +1,1 @@
+depoy_automatic_audit_purging.sql Deploy audit purge for 7 days

@@ -1,0 +1,3 @@
+pqslave.sql                  Information regarding parallel query slaves
+pxprocessstat.sql            statistics about parallel query processes
+pxsession.sql                active parallel query processes

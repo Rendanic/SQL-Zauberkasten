@@ -1,0 +1,42 @@
+---------------------------------------------------------------------------
+Version 1.1
+New directories and files:
+A       audit
+A       audit/deploy_automatic_audit_purging.sql
+A       audit/depoy_automatic_audit_purging.sql
+A       database/dbc_license.sql
+A       database/log_hist_stat1.sql
+A       database/network_acl.sql
+A       ee/diag/ash/ash2.sql
+A       ee/tuning/dbms_monitor
+A       ee/tuning/sqltune/sql_monitor_rep.sql
+A       release_notes.txt
+A       rman/catalog/status_all_dbs.sql
+A       session/cancel_exec.sql
+A       session/hash2sqlid.sql
+A       statspack/spcreate/job_purge.sql
+A       statspack/spcreate/statspack_job.sql
+A       trace/logon_trigger.sql
+A       undo/rollbacksegs.sql
+
+Modified files
+M       database/dba_cpu_usage_stat.sql
+M       index/idx_frag.sql
+M       session/sw10block.sql
+M       statspack/spcreate/_scriptinfo.txt
+M       user/privs4user_spool.sql
+M       user/spool_create_role_non_sys.sql
+M       user/spool_create_user_non_sys.sql
+M       user/spool_privs4user_non_sys.sql
+M       user/spool_public_synonym_non_sys.sql
+
+Deleted files - normaly I won't remove file from scriptset
+D       trace/client_stats_overview.sql
+D       trace/client_stats.sql
+D       trace/orad_errorstack.sql
+---------------------------------------------------------------------------
+Version 1.0:
+1. Release nach einer kompletten Uerberarbeitung aller Skripte.
+---------------------------------------------------------------------------
+
+

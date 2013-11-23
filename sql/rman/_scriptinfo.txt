@@ -1,0 +1,14 @@
+archive_volumen.sql          archivesize per day
+clear_ctl_deleted_objects.sql Script for reset of control-file-pointers
+incarnation.sql              display known database incarnations
+output.sql                   Detail output for a rman-job
+restorepoint.sql             display known restore points
+set_newname.sql              spool set newname for all files
+status_all.sql               status for all RMAN-Backups from v$rman_status
+status_archive.sql           history for known archivelog backups
+status_archive_stat.sql      Statistics for archivelog backups
+status_backup.sql            list entries from v$rman_status where object_type != 'ARCHIVELOG'
+status_duplicate.sql         list duplicate operations from v$rman_status
+status_rman_backup.sql       list last 50 entries from v$rman_status
+status_running.sql           list last 250 entries from v$rman_status
+vbackup_async.sql            statistical information from v$backup_async_io

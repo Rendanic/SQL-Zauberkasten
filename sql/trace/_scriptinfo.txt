@@ -1,0 +1,7 @@
+login_trigger.sql            example for a logon trigger for event 10046
+orad_tfn.sql                 Display tracefile-name for session in oradebug
+orad_trace_off.sql           disable SQL-Trace in current oradebug session
+orad_trace_on.sql            Enable SQL-Trace in current oradebug session
+setev.sql                    enable a SQL-Trace for a given session with level
+stop_sqltrace.sql            disable SQL-Trace for a given Session
+stopall_sqltrace.sql         disable SQL-Trace for all sessions in a database

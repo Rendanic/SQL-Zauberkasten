@@ -1,0 +1,1 @@
+diag_info.sql                Displays info from gv$diag_info

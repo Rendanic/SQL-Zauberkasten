@@ -1,0 +1,89 @@
+Subject: 	How To Identify a Hot Block Within The Database Buffer Cache.
+  	Doc ID: 	Note:163424.1 	Type: 	HOWTO
+  	Last Revision Date: 	07-MAR-2006 	Status: 	PUBLISHED
+
+    * goal: How to identify blocks which cause latch contention on the 'cache buffers chains' latch.
+    * goal: How to identify a hot block within the database buffer cache.
+    * fact: Oracle Server - Enterprise Edition 8.1
+    * fact: Oracle Server - Enterprise Edition 9 
+
+
+
+fix:
+
+Possible hot blocks in the buffer cache normally can be identified by a high or 
+rapid increasing wait count on the CACHE BUFFERS CHAINS latch. 
+
+This latch is acquired  when searching for data blocks cached in the buffer cache. 
+Since the Buffer cache is implemented as a sum of chains of blocks, each of those 
+chains is protected by a child of this latch when needs to be scanned. Contention 
+in this latch can be caused by very heavy access to a single block. This can 
+require the application to be reviewed. 
+
+As stated in Note 42152.1 LATCH:CACHE_BUFFERS_CHAINS  : to solve a hot 
+block, the application maybe need to be reviewed.
+ 
+By examining the waits on this latch, information about the segment and the 
+specific block can be obtained using the following queries.
+
+First determine which latch id(ADDR) are interesting by examining the number of 
+sleeps for this latch. The higher the sleep count, the more interesting the 
+latch id(ADDR) is:
+
+select CHILD#  "cCHILD"
+,      ADDR    "sADDR"
+,      GETS    "sGETS"
+,      MISSES  "sMISSES"
+,      SLEEPS  "sSLEEPS" 
+from v$latch_children 
+where name = 'cache buffers chains'
+order by 5, 1, 2, 3;
+
+Run the above query a few times to to establish the id(ADDR) that has the most 
+consistent amount of sleeps. Once the id(ADDR) with the highest sleep count is found
+then this latch address can be used to get more details about the blocks
+currently in the buffer cache protected by this latch. 
+The query below should be run just after determining the ADDR with 
+the highest sleep count.
+
+column segment_name format a35
+select /*+ RULE */
+  e.owner ||'.'|| e.segment_name  segment_name,
+  e.extent_id  extent#,
+  x.dbablk - e.block_id + 1  block#,
+  x.tch,
+  l.child#
+from
+  sys.v$latch_children  l,
+  sys.x$bh  x,
+  sys.dba_extents  e
+where
+  x.hladdr  = 'ADDR' and
+  e.file_id = x.file# and
+  x.hladdr = l.addr and
+  x.dbablk between e.block_id and e.block_id + e.blocks -1
+  order by x.tch desc ;
+
+Example of the output :
+SEGMENT_NAME                          EXTENT#       BLOCK#    TCH     CHILD#
+-------------------------------- ------------ ------------ ------ ----------
+SCOTT.EMP_PK                             5          474       17      7,668
+SCOTT.EMP                                1          449        2      7,668
+
+Depending on the TCH column (The number of times the block is hit by a SQL 
+statement), you can identify a hotblock. The higher the value of the TCH column,
+ the more frequent the block is accessed by SQL statements.
+
+In order to reduce contention for this object the following mechanisms can be put in place:
+
+   1)Examine the application to see if the execution of certain DML
+     and SELECT statements can be reorganized to eliminate contention
+     on the object.
+   2)Decrease the buffer cache -although this may only help in a small amount of cases.
+   3)DBWR throughput may have a factor in this as well.
+      If using multiple DBWR's then increase the number of DBWR's
+   4)Increase the PCTFREE for the table storage parameters via ALTER TABLE 
+     or rebuild. This will result in less rows per block.
+   5)Consider implementing reverse key indexes 
+     (if range scans aren't commonly used against the segment)
+ 

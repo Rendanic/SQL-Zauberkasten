@@ -1,0 +1,2 @@
+log.sql                      Information from gv$recovery_log
+progress.sql                 Information for a running Recovery-Operation

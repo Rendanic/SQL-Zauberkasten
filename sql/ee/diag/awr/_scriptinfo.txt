@@ -1,0 +1,12 @@
+awr_modify.sql               script to modify the AWR-Settings!
+awrrpt_dbid.sql              script generates a customized AWR-Report
+awrrpt_dbid.sql              This script generates a customized AWR-Report
+awrrpthtml_dbid.sql          script generates a customized HTML-AWR-Report
+awr_extr_dbid.sql            script exports Snapshots from AWR to DataPump
+awr_snaps_dbid.sql           List of AWR-Snapshots for DBID
+awr_snap_stats2_dbid.sql     List a report from dba_hist_sysmetric_summary
+awr_snap_stats_dbid.sql      List a report from dba_hist_sysmetric_summary
+awr_tbs_hist_dbid.sql        Historical information for tablespaces
+awrsqlrpt_dbid.sql           Generates a awrsqlrpt for given parameters
+awrsqlrpt_dbid.sql           Generates a awrsqlrpt for given parameters
+create_snapshot.sql          creates a snapshot in the AWR

@@ -1,0 +1,19 @@
+aux_stat.sql                 display system statistics
+export_schema_stats.sql      export schema statistics, create destination table before
+get_param.sql                get default statistic parameter from database
+gather_schema_stale9i.sql    gather stale statistics with 10% and xolumns size 1, degree 4
+import_schema_stats.sql      Import schema Statistics from table
+import_schema_stats_part.sql Import schema Statistics from table, ignore non existing partitions
+import_table_stats.sql       Import Tablestattistics
+ind_stale.sql                Display stale Index Statistics
+lock_schema_stat.sql         Lock Statistics for a schema
+modify_stats_jobs_example_10.sql Examle for modifying the default statistic job
+restore_tab_stat.sql         create list of restore_table_stats for given parameters
+stat_flush.sql               Flush statistic monitoring information
+stat_operation.sql           display optstat operations from dba_optstat_operations
+tab_histograms.sql           Display Histograms of a table column
+tab_histograms2.sql          Display Histograms of a table column
+tab_histograms_part.sql      Display Histograms of a table Partition column
+tab_history.sql              historical statistic information from wri$_optstat_tab_history
+tab_history2.sql             historical statistic information from wri$_optstat_tab_history
+tab_stale.sql                display tables with stale statistics

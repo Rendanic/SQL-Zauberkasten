@@ -1,0 +1,11 @@
+changed_objects.sql          Displays changed objects in last n days
+dba_errors.sql               Displays changed objects in last n days
+db_links.sql                 Display all db-links from dba_db_links
+dbms_metadata.sql            prints DDL from dbms_metadata for object
+dbms_metadata2.sql           DDL from dbms_metadata for object with 2 Param
+dict.sql                     Displays info from DICT
+inv_objects8i.sql            Displays invalid objects in the database
+inv_objects.sql              Displays invalid objects in the database
+obj_dependencies.sql         Displays dependencies for given object
+obj_infoid.sql               Displays information for given object_id
+obj_info.sql                 Displays information from dba_objects

@@ -1,0 +1,2 @@
+parsetrace_disable.sql       Disables Optimizer Trace for the given Session
+parsetrace_enable.sql        Enables Optimizer Trace for the given Session

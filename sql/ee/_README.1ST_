@@ -1,0 +1,13 @@
+this directory-tree contains scripts which need some additional licenses from
+Oracle Corporation.
+
+diag   => Orace Diagnostic Pack required
+tuning => Orace Diagnostic + Tuning Pack required
+index  => NO additional License required. Scripts only usable with EE!
+
+No warranty from Opitz Consulting.
+
+
+Kind Regards
+Thorsten Bruhns (thorsten.bruhns@opitz-consulting.com)
+

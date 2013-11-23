@@ -1,0 +1,7 @@
+autoextend_off.sql           SQL for disabling autoextend on data- and tempfiles
+dbfi.sql                     information for Datafiles 
+dbfi_temp.sql                information for Tempfiles 
+dbf_max_block8i.sql          highest block in Datafile (8i)
+dbf_max_block.sql            highest block in Datafile
+dbf_minsize.sql              generates SQL for min resize of all datafiles
+rename_files.sql             generates SQL for renaming data-, temp- and redologfiles

@@ -1,0 +1,3 @@
+statspack_configuration.sql  configurationfile for statspack_create.sql
+statspack_create.sql         creates the statspack-Objects in the database
+statspack_job.sql            script for generating the needed statspack jobs - RAC aware!

@@ -1,0 +1,11 @@
+dba_tab_priv.sql             dba_tab_privs for an object
+network_acls.sql             dba_network_acls
+privs4user.sql               all priviledges for a user 
+privs4user_spool.sql         all priviledges for a user in spool format
+savepwd.sql                  Spool  pre 11g user hash-values from dba_users
+spool_create_role_non_sys.sql spool 'create role identified by ..' for all non sys-users
+spool_create_user_non_sys.sql spool 'create user identified by ..' for all non sys-users
+spool_privs4user_non_sys.sql spool 'grant user ...' for all non sys-users
+spool_public_synonym_non_sys.sql spool 'create public synonym ...' for all non sys-users
+userinfo.sql                 userinfo from dba_users
+userinfo2.sql                userinfo from dba_users with lock and expire-date

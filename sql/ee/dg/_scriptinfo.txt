@@ -1,0 +1,4 @@
+logstdb_events.sql           Displays information from DBA_LOGSTDBY_EVENTS
+logstdb_events_trx.sql       Displays trx-ids from DBA_LOGSTDBY_EVENTS
+logstdb_log.sql              Displays information from DBA_LOGSTDBY_LOG
+logstdb_progress.sql         Displays information from V$LOGSTDBY_PROGRESS

@@ -1,0 +1,34 @@
+diag_info.sql                Displays info from gv$diag_info
+cancel_exec.sql              Cancel a running operation in Session
+cs.sql                       alter session set current_schema
+hash2sqlid.sql               get sqlid for OLD_HASH_VALUE from sqlarea
+kill_session.sql             kills a given session
+lock_internal.sql            Information from dba_lock_internal
+nlsf.sql                     set nls_date_format in current session
+ospud.sql                    Display Information for a given SID from v$session
+osstat.sql                   get Information from v$osstat for given seconds
+pid2sid.sql                  get process id for SID
+resumable.sql                Display Resumable Sessions 
+pid2sid.sql                  get session information for process id
+sessioni.sql                 some other Session Information for given SID
+sistat.sql                   some sesstat information for given SID
+slo.sql                      Session Long Operations
+spid4killed.sql              get process id for killes Oracle Sessions
+sql8i.sql                    Session Information for SID with running SQL-Statement
+sql9i.sql                    Session Information for SID with running SQL-Statement
+sql10.sql                    Session Information for SID with running SQL-Statement
+sqlactive.sql                Display active cursors for given SessionID
+sqlactive2.sql               Display active cursors for given SessionID
+sqlactive3.sql               Display active cursors for given SessionID
+sqlbind.sql                  Display Bind-Information for given sql_id
+sqliddetails.sql             Detail information for given sql_id
+sw2.sql                      non background active sessions from v$session
+sw10all.sql                  non background  sessions from v$session
+sw10block.sql                Display blocking sessions from v$session
+sw10trace.sql                display state for sql-Trace for all non background sessions
+swall.sql                    Dispay all sessions from v$session
+swtop.sql                    display all Sessions from v$session ordered by seconds in wait
+swtop20.sql                  display last 20 Sessions from v$session ordered by seconds in wait
+transaction.sql              active transactions
+transaction10.sql            active transactions with running sqlstatement
+wait_hist.sql                information from v$session_wait_history for SID

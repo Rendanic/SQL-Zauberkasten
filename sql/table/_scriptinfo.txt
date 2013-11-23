@@ -1,0 +1,10 @@
+col_info.sql                 search for columns in data dictionary
+long_non_sys_owner.sql       Displays Non-Sys-Owner with %LONG%-Columns
+tab_frag.sql                 display table fragmentation, attention on tables with LOBs!
+tab_idx.sql                  display all indexes on a table
+tab_info.sql                 display table information from data-dictionary
+tab_info8i.sql               display table information from data-dictionary
+tab_modification.sql         Information from dba_tab_modifications
+tab_parallel.sql             display all parallel attributes from tables and indexes
+tab_shrink.sql               generates statements for shrinking tables
+tab_stat.sql                 Display lot of detail information for one table

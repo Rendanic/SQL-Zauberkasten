@@ -1,0 +1,20 @@
+block_corruption.sql         Display Extents with Block-Corruptions
+dba_cpu_usage_stat.sql       Statistics for CPU-Information
+dbc_license.sql              Displays active licenses in Database Console
+feauture_usage_statistics.sql feauture usage from data-Dictionary
+flash_stat.sql               Information for recovery-area and flashback
+hist_database_instance.sql   Database-Startups from data-dictionary
+log_hist.sql                 gv$log_history
+recyclebinusage.sql          recyclebin usage
+vd.sql                       info from v$database
+dba_registry.sql             Displays information from dba_registry
+flash_logfile.sql            Information for flashback-logs
+hist_database_instance_all.sql   historical info from dba_hist_database_instance
+log_hist10.sql               info from gv$log_history
+log_hist_stat1.sql           Statistic Information for Archivelog volume of last 10 days
+network_acl.sql              Displays NETWORK_ACLS from Data-Dictionary
+pgastat.sql                  Info from workarea Policy
+registry.sql                 info from dba_registry
+vd10.sql                     info from gv$instance only 10g or newer
+vi.sql                       info from gv$instance
+sysmetric_history.sql        Info from v$sysmetric_history for last 10 min

@@ -1,0 +1,5 @@
+rollbacksegs.sql             Information for all Rollback-Segments
+undostat.sql                 Undostat-Information from V$undostat (last 50 entries)
+undostat10.sql               Undostat-Information from V$undostat for 10g+ (last 50 entries)
+undostatall.sql              Undostat-Information from V$undostat
+undostat10all.sql            Undostat-Information from V$undostat for 10g+

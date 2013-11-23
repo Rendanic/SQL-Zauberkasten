@@ -1,0 +1,2 @@
+jobinfo.sql                  list existing jobs from dba_jobs
+jobrun.sql                   list running jobs from dba_jobs

@@ -1,0 +1,46 @@
+adr                                    Automatic Diagnostic Repository
+asm                                    Automatic Storage Management
+audit                                  Audit-Stuff
+ctx                                    Oracle Text Option
+buffercache                            Buffercache-Information
+buffercache/bufferchain                Bufferchains in Buffercache
+database                               some Database Informations
+datafile                               Database Datafiles
+datapump                               Oracle Data-Pump
+dbms_job                               DBMS_JOB-Scripts
+ee                                     Enterprise Edition related stuff
+ee/cdc                                 Change Data Capture
+ee/dg                                  Data-Guard
+ee/diag                                Diagnostic-Pack related script. Licence required!
+ee/diag/ash                            Active Session History
+ee/diag/awr                            Automatic Workload Repository
+ee/index                               Index scripts only for Enterprise Edition
+ee/tuning                              Tuning-Pack related script. Licence required!
+ee/tuning/sqltune                      dbms_sqltune-Scripts
+gc                                     Enterprise Manager Grid Control SQLs
+gc/report                              Grid Control Reporting-SQL
+index                                  Database-Index Informations
+lob                                    Database Large Objects
+mview                                  Materialized Views
+object                                 database-object related sqls
+parameter                              Database-Parameters
+px                                     Paralel Operations
+recovery                               Database Recovery
+rman                                   RMAN-Scripts
+rman/catalog                           RMAN-Catalog-Scripts
+scheduler                              DBMS_SCHEDULER
+serveralert                            Sever Generated Alerts
+session                                Database Session
+sga                                    System Global Area
+shared                                 Shared Server Information
+stat                                   DBMS_STATS
+statspack                              Statspack
+statspack/spcreate                     automatic Statspack-Generation
+table                                  Database-Table Informations
+tbs                                    Tablespace-Informations
+temptbs                                temporary tablespace
+trace                                  Database-Trace
+trace/optimizer                        Optimizer Trace Event 10053
+undo                                   UNDO-Tablespace
+user                                   user and priviledges
+xplan                                  explain plan
