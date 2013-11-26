@@ -1,2 +1,4 @@
+fuzzy.sql                    Display fuzzy Datafiles
+fuzzy_absolute.sql           Display fuzzy information from x$kcvfh
 log.sql                      Information from gv$recovery_log
 progress.sql                 Information for a running Recovery-Operation

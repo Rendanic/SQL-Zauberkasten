@@ -8,4 +8,5 @@ spool_create_user_non_sys.sql spool 'create user identified by ..' for all non s
 spool_privs4user_non_sys.sql spool 'grant user ...' for all non sys-users
 spool_public_synonym_non_sys.sql spool 'create public synonym ...' for all non sys-users
 userinfo.sql                 userinfo from dba_users
+userinfo12.sql               userinfo from dba_users from RDBMS12c
 userinfo2.sql                userinfo from dba_users with lock and expire-date

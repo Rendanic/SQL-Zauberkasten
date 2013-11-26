@@ -1,6 +1,7 @@
 --
 -- Thorsten Bruhns (Thorsten.Bruhns@opitz-consulting.de)
--- $Id: tab_history.sql 10 2008-11-11 10:25:06Z oracle $
+--
+-- Version: 2
 --
 -- historical statistic information from wri$_optstat_tab_history
 -- stats_update => Timestamp of gathering the statistical information
@@ -24,7 +25,7 @@ select do.OWNER
       ,wot.AVGRLN
       ,wot.SAMPLESIZE sample
       ,to_char(wot.ANALYZETIME, 'dd.MM HH24:MI') STATS_UPDATE
-  from WRI$_OPTSTAT_TAB_HISTORY wot
+  from SYS.WRI$_OPTSTAT_TAB_HISTORY wot
   join dba_objects do on do.object_id = wot.obj#
  where do.OWNER like upper('&1')
    and do.OBJECT_NAME like upper('&2')

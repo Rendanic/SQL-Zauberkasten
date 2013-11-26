@@ -3,6 +3,7 @@ dba_errors.sql               Displays changed objects in last n days
 db_links.sql                 Display all db-links from dba_db_links
 dbms_metadata.sql            prints DDL from dbms_metadata for object
 dbms_metadata2.sql           DDL from dbms_metadata for object with 2 Param
+dbms_metadata_user.sql       prints DDL for create user with all grants
 dict.sql                     Displays info from DICT
 inv_objects8i.sql            Displays invalid objects in the database
 inv_objects.sql              Displays invalid objects in the database

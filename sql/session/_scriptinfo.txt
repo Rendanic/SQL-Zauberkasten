@@ -11,6 +11,7 @@ pid2sid.sql                  get process id for SID
 resumable.sql                Display Resumable Sessions 
 pid2sid.sql                  get session information for process id
 sessioni.sql                 some other Session Information for given SID
+connect_info.sql             v$session_connect_info for all sessions
 sistat.sql                   some sesstat information for given SID
 slo.sql                      Session Long Operations
 spid4killed.sql              get process id for killes Oracle Sessions
