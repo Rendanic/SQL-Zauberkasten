@@ -1,0 +1,11 @@
+Der SQL-Zauberkasten ist eine Skriptsammlung fuer Oracle-Datenbanken.
+Die Unterverzeichnisse sind thematisch aufgebaut. 'table' => alles rund um Tabellen, 'session' => alles rund um Sessions
+Der Verzeichnisbaum 'ee' enthaelt Skripte, die Optionen nutzen, die nur in der Enterprise Edition vorhanden sind. Die Nutzung erfordert eine entsprechende Lizenz.
+In jedem Verzeichnis befindet sich eine Datei mit dem Namen _scriptverzeichnis.txt, in der pro Skript eine einzeilige Beschreibung vorhanden ist.
+
+Im ZIP-Verzeichnis werden jeweils Archive mit den entsprechendes 'tags' abgelegt. Sofern sich genug Aenderungen angesammelt haben, baue ich ein entsprechend neues Archiv.
+
+Skripte werden per Push-Request nur aufgenommen, wenn keine Rechte von dritten verletzt werden.
+
+Gruß
+Thorsten Bruhns
