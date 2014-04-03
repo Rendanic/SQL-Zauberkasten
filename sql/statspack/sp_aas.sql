@@ -10,7 +10,7 @@ set lines 120 pages 9999 echo off verify off
 
 column inst format 99
 column aas_graph format a41
-column aas format 999,99
+column aas format 999.99
 SELECT snap_time
      , instance_number as inst
      , RPAD('|', CEIL( 40* aas / max(aas) over() ), '*') aas_graph
