@@ -34,7 +34,7 @@ column spoolfile new_value spoolfile noprint
 select '&1'||&dbid||'_awrrpt_'||&sn_start||'_'||&sn_end||'.html' spoolfile from dual;
 
 prompt &spoolfile
-set feedback off termout off
+set feedback off termout off lines 8000 pages 0 trimspool on
 
 spool &spoolfile
 select output
@@ -47,6 +47,6 @@ from table(dbms_workload_repository.awr_report_html(&dbid
 ;
 spool off
 
-set feedback on termout on heading on
+set feedback on termout on heading on pages 9999 lines 120
 prompt Done.
 exit
