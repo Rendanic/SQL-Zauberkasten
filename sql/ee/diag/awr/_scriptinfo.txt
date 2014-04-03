@@ -7,6 +7,7 @@ awr_snaps_dbid.sql           List of AWR-Snapshots for DBID
 awr_snap_stats2_dbid.sql     List a report from dba_hist_sysmetric_summary
 awr_snap_stats_dbid.sql      List a report from dba_hist_sysmetric_summary
 awr_tbs_hist_dbid.sql        Historical information for tablespaces
-awrsqlrpt_dbid.sql           Generates a awrsqlrpt for given parameters
+awrrpthtml_dbid.sql          Generates a HTML awrsqlrpt for given parameters
+awrrpthtml_last.sql          Generates latest available HTML awrsqlrpt
 awrsqlrpt_dbid.sql           Generates a awrsqlrpt for given parameters
 create_snapshot.sql          creates a snapshot in the AWR

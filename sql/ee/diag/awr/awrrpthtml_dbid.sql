@@ -32,14 +32,14 @@ set heading off
 set feedback off
 set verify off
 column spoolfile new_value spoolfile noprint
-select '&5'||'&1'||'_awrrpt_'||'&2'||'_'||'&3'||'.txt' spoolfile from dual;
+select '&5'||'&1'||'_awrrpt_'||'&2'||'_'||'&3'||'.html' spoolfile from dual;
 
 prompt &spoolfile
 feedback off
 
 spool &spoolfile
 select output
-from table(dbms_workload_repository.awr_report_text(&1
+from table(dbms_workload_repository.awr_report_html(&1
                                                    ,&4
                                                    ,&2
                                                    ,&3
