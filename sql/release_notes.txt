@@ -1,4 +1,43 @@
 ---------------------------------------------------------------------------
+Version 2.0
+
+new or modified files:
+README
+rlwrap/rlwrap_linux
+rlwrap/rlwrap_linux_x64
+rlwrap/rlwrap_sparc
+sql/apex/_scriptinfo.txt
+sql/apex/workspaces.sql
+sql/asm/_scriptinfo.txt
+sql/asm/dgstat1.sql
+sql/asm/maas.sql
+sql/datafile/_scriptinfo.txt
+sql/datafile/dbfi_header.sql
+sql/datafile/dbfi_nextext.sql
+sql/directory_description.txt
+sql/ee/dg/_scriptinfo.txt
+sql/ee/dg/managed_reco_cancel.sql
+sql/ee/dg/managed_reco_start.sql
+sql/object/_scriptinfo.txt
+sql/object/dbms_metadata_user.sql
+sql/pdb/_scriptinfo.txt
+sql/pdb/current.sql
+sql/pdb/script_true.sql
+sql/pdb/switch.sql
+sql/pdb/trigger_open_all.sql
+sql/pdb/vpdb.sql
+sql/recovery/_scriptinfo.txt
+sql/recovery/fuzzy.sql
+sql/recovery/fuzzy_absolute.sql
+sql/release_notes.txt
+sql/session/_scriptinfo.txt
+sql/session/connect_info.sql
+sql/sq.sh
+sql/stat/tab_history.sql
+sql/stat/tab_history2.sql
+sql/user/_scriptinfo.txt
+sql/user/userinfo12.sql
+---------------------------------------------------------------------------
 Version 1.1
 New directories and files:
 A       audit

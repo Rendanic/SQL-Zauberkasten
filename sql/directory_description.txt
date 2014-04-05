@@ -1,4 +1,5 @@
 adr                                    Automatic Diagnostic Repository
+apex                                   APEX
 asm                                    Automatic Storage Management
 audit                                  Audit-Stuff
 ctx                                    Oracle Text Option
@@ -14,6 +15,7 @@ ee/dg                                  Data-Guard
 ee/diag                                Diagnostic-Pack related script. Licence required!
 ee/diag/ash                            Active Session History
 ee/diag/awr                            Automatic Workload Repository
+ee/diag/dg                             Data-Guard
 ee/index                               Index scripts only for Enterprise Edition
 ee/tuning                              Tuning-Pack related script. Licence required!
 ee/tuning/sqltune                      dbms_sqltune-Scripts
