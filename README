@@ -5,7 +5,7 @@ In jedem Verzeichnis befindet sich eine Datei mit dem Namen _scriptverzeichnis.t
 
 Im ZIP-Verzeichnis werden jeweils Archive mit den entsprechendes 'tags' abgelegt. Sofern sich genug Aenderungen angesammelt haben, baue ich ein entsprechend neues Archiv.
 
-Skripte werden per Push-Request nur aufgenommen, wenn keine Rechte von dritten verletzt werden.
+Skripte werden per Push-Request nur aufgenommen, wenn keine Rechte von Dritten verletzt werden.
 
 Gruß
 Thorsten Bruhns
