@@ -1,6 +1,7 @@
 aux_stat.sql                 display system statistics
 export_schema_stats.sql      export schema statistics, create destination table before
 get_param.sql                get default statistic parameter from database
+get_prefs11.sql              Get default global statistics collection parameters (11g+)
 gather_schema_stale9i.sql    gather stale statistics with 10% and xolumns size 1, degree 4
 import_schema_stats.sql      Import schema Statistics from table
 import_schema_stats_part.sql Import schema Statistics from table, ignore non existing partitions
