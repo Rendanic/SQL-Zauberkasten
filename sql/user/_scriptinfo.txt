@@ -1,3 +1,4 @@
+csv_privs4user_non_sys.sql   spool privs4user_non_sys as csv
 dba_tab_priv.sql             dba_tab_privs for an object
 network_acls.sql             dba_network_acls
 privs4user.sql               all priviledges for a user 
