@@ -4,8 +4,8 @@
 --
 -- get default statistic parameter from database
 --
--- Note:406475.1 Subject: 	What are default parameters when i gather statistisc on Table on 9i and 10g
--- Note:725845.1 Subject:       How to Change Default Parameters for Gathering Statistics
+-- Note:406475.1 Subject: What are default parameters when i gather statistisc on Table on 9i and 10g
+-- Note:725845.1 Subject: How to Change Default Parameters for Gathering Statistics
 --
 -- 2014-08-14 U. Kuechler: Major rewrite to cover options from 10.1 to 11.2.0.4.
 
@@ -48,10 +48,10 @@ select 'STALE_PERCENT', CASE WHEN I.VERSION >= '11'
        THEN DBMS_STATS.get_param( 'STALE_PERCENT' )
        ELSE '---' END AS pref FROM dual, i
 union
-select 'CONCURRENT', CASE WHEN I.VERSION >= '11'
+select 'CONCURRENT', CASE WHEN I.VERSION >= '11.2'
        THEN DBMS_STATS.get_param( 'CONCURRENT' )
        ELSE '---' END AS pref FROM dual, i
---/* ab 11.2.0.4 ---------------------------------------------------------------
+--/* ab 11.2.0.4 oder 11.2.0.3 mit Patch 13262857 ------------------------------
 union
 select 'APPROXIMATE_NDV', CASE WHEN I.VERSION >= '11.2.0.4'
        THEN DBMS_STATS.get_param( 'APPROXIMATE_NDV' )
