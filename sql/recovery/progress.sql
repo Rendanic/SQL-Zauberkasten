@@ -21,6 +21,6 @@ select to_char(start_time,'HH24:mi:ss') stime
       ,units
       ,sofar
       ,total 
-      ,TIMESTAMP
+      ,to_char(timestamp,'mm.dd HH24:mi:ss') timestamp
 from V$RECOVERY_PROGRESS;
 
