@@ -1,0 +1,8 @@
+--
+-- Thorsten Bruhns (Thorsten.Bruhns@opitz-consulting.com)
+-- Version: 0.1
+-- Date: 15.12.2014
+
+-- Example for Point in time recovery
+--
+-- recover database until time '2014-01-31:20:45:00'
