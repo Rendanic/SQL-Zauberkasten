@@ -5,6 +5,7 @@ feauture_usage_statistics.sql feauture usage from data-Dictionary
 flash_stat.sql               Information for recovery-area and flashback
 hist_database_instance.sql   Database-Startups from data-dictionary
 log_hist.sql                 gv$log_history
+log_info.sql                 Get overview from v$log and v$standby_log
 recyclebinusage.sql          recyclebin usage
 vd.sql                       info from v$database
 dba_registry.sql             Displays information from dba_registry
