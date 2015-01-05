@@ -15,6 +15,7 @@ log_hist10.sql               info from gv$log_history
 log_hist_stat1.sql           Statistic Information for Archivelog volume of last 10 days
 network_acl.sql              Displays NETWORK_ACLS from Data-Dictionary
 pgastat.sql                  Info from workarea Policy
+pgastat2.sql                 pga information for all Sessions
 registry.sql                 info from dba_registry
 vd10.sql                     info from gv$instance only 10g or newer
 vi.sql                       info from gv$instance
