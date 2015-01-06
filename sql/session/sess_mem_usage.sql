@@ -11,14 +11,19 @@
 --
 
 set lines 140
+set pages 100
 set verify off
 
-COLUMN category      HEADING "Category"
-COLUMN allocated     HEADING "Allocated bytes"
-COLUMN used          HEADING "Used bytes"
-COLUMN max_allocated HEADING "Max allocated bytes"
 
-SELECT pid, category, allocated, used, max_allocated
+COLUMN category      HEADING "Category"
+COLUMN allocated     HEADING "Allocated kB"
+COLUMN used_kBused_kB HEADING "Used kB"
+COLUMN max_alloc_kB  HEADING "Max alloc kB"
+
+SELECT pid, category
+     , round(allocated/1024) alloc_kB
+     , round(used/1024) used_kB
+     , round(max_allocated/1024) max_alloc_kB
 FROM   v$process_memory
 WHERE  pid = (SELECT pid
               FROM   v$process
@@ -29,3 +34,4 @@ WHERE  pid = (SELECT pid
              )
 order by 4
 ;
+
