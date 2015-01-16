@@ -14,6 +14,7 @@ flash_logfile.sql            Information for flashback-logs
 hist_database_instance_all.sql   historical info from dba_hist_database_instance
 log_hist10.sql               info from gv$log_history
 log_hist_stat1.sql           Statistic Information for Archivelog volume of last 10 days
+log_hist_stat2.sql           Statistic Information for number of Log Switches of last 10 days
 network_acl.sql              Displays NETWORK_ACLS from Data-Dictionary
 pgastat.sql                  Info from workarea Policy
 pgastat2.sql                 pga information for all Sessions
