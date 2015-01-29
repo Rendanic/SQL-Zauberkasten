@@ -81,6 +81,17 @@ select *
 prompt
 prompt
 prompt =======================
+prompt Cleanup Events
+prompt =======================
+
+col CLEANUP_TIME    for a32
+
+select * from DBA_AUDIT_MGMT_CLEAN_EVENTS;
+
+
+prompt
+prompt
+prompt =======================
 prompt Last Archival Timestamp
 prompt =======================
 
