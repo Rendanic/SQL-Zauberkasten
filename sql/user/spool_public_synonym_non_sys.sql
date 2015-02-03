@@ -7,15 +7,12 @@
 --prompt SET MARKUP HTML ON ENTMAP on spool on
 set pagesize 10000
 set lines 100
-
-column grantee format a30
-column role_recht format a30
-column object_name format a30
+set head off
 
 select 'create public synonym "'|| synonym_name||'"'
        ||' for "' || TABLE_OWNER||'"."'||TABLE_NAME||'"'
 	   ||nvl2(DB_LINK,'@'||DB_LINK,null)
-	   ||';'
+	   ||';' as script
 from dba_synonyms
 where owner = 'PUBLIC'
   and table_owner not in ('ANONYMOUS','CTXSYS','DBSNMP','DIP','DMSYS'
@@ -30,6 +27,7 @@ where owner = 'PUBLIC'
 					 'CTXAPP',
 					 'DBA',
 					 'APEX_030200',
+					 'APEX_040100',
 					 'DELETE_CATALOG_ROLE',
 					 'EJBCLIENT',
 					 'ORDDATA',
