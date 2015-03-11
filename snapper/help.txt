@@ -1,0 +1,187 @@
+--------------------------------------------------------------------------------
+--
+--   The Session Snapper v4.15 ( USE AT YOUR OWN RISK !!! )
+--   (c) Tanel Poder ( http://blog.tanelpoder.com )
+--
+--
+--    +-----=====O=== Welcome to The Session Snapper! (Yes, you are looking at a cheap ASCII
+--   /                                                 imitation of a fish and a fishing rod.
+--   |                                                 Nevertheless the PL/SQL code below the
+--   |                                                 fish itself should be helpful for quick
+--   |                                                 catching of relevant Oracle performance
+--   |                                                 information.
+--   |                                                 So I wish you happy... um... snapping?
+--   |                                                )
+--   |                       ......
+--   |                       iittii,,....
+--   ¿                    iiffffjjjjtttt,,
+--                ..;;ttffLLLLffLLLLLLffjjtt;;..
+--            ..ttLLGGGGGGLLffLLLLLLLLLLLLLLffjjii,,                        ..ii,,
+--            ffGGffLLLLLLjjttjjjjjjjjffLLLLLLLLLLjjii..                ..iijj;;....
+--          ffGGLLiittjjttttttiittttttttttffLLLLLLGGffii..            ;;LLLLii;;;;..
+--        ffEEGGffiittiittttttttttiiiiiiiittjjjjffLLGGLLii..      iiLLLLLLttiiii,,
+--      ;;ffDDLLiiiitt,,ttttttttttttiiiiiiiijjjjjjffLLLLffttiiiiffLLGGLLjjtttt;;..
+--    ..ttttjjiitt,,iiiiiittttttttjjjjttttttttjjjjttttjjttttjjjjffLLDDGGLLttii..
+--    iittiitttt,   ;;iittttttttjjjjjjjjjjttjjjjjjffffffjjjjjjjjjjLLDDGGLLtt;;..
+--    jjjjttttii:. ..iiiiffLLGGLLLLLLLLffffffLLLLLLLLLLLLLLLLffffffLLLLLLfftt,,
+--    iittttii,,;;,,ttiiiiLLLLffffffjjffffLLLLLLLLffLLffjjttttttttttjjjjffjjii..
+--    ,,iiiiiiiiiittttttiiiiiiiiiijjffffLLLLLLLLffLLffttttttii;;;;iiiitttttttt;;..
+--    ..iittttttffffttttiiiiiiiiiittttffjjjjffffffffttiittii::    ....,,;;iittii;;
+--      ..;;iittttttttttttttttiiiiiittttttttttjjjjjjtttttt;;              ..;;ii;;..
+--          ..;;;;iittttttjjttiittttttttttttttjjttttttttii..                  ....
+--                ....;;;;ttjjttttiiiiii;;;;;;iittttiiii..
+--                      ..;;ttttii;;....      ..;;;;....
+--                        ..iiii;;..
+--                          ..;;,,
+--                            ....
+--
+--
+--  Usage:
+--
+--      snapper.sql <ash[1-3]|stats|all>[,out][,trace][,pagesize=X][,gather=[s][t][w][l][e][b][a]]> <seconds_in_snap> <snapshot_count> <sid(s)_to_snap>
+--
+--          ash      - sample session activity ASH style, waits and SQL_IDs from gv$session and
+--                     print a TOP SQL/wait report from these samples (this is the default from
+--                     Snapper 3.0). The columns chosen for TOP calculation are defined in CONFIG
+--                     section below.
+--
+--          ash=sql_id+event+wait_class
+--                   - the above example illustrates that you can also specify the gv$session
+--                     columns for TOP report yourself. The above example will show a TOP
+--                     activity report grouped by SQL_ID + EVENT + WAIT_CLASS
+--                     Note that the columns are separated by a "+" sign (as comma is a snapper 
+--                     parameter separator, not ASH column separator)
+--
+--          ash1
+--          ash2
+--          ash3     - in addition to "ash" report you can have 3 more reported during the same
+--                     snapper sampling snapshot. Just include ash1=col1+col2,ash2=col3+col4,...
+--                     parameters if you want multiple TOP reports per Snapper snapshot
+--
+--          stats    - sample gv$sesstat,gv$sess_time_model,gv$session_event performance counters
+--                     and report how much these stats increased (deltas) during Snapper run
+--          all      - report both ASH and stats sections
+--
+--          out      - use dbms_output.put_line() for output. output will be seen only when
+--                     Snapper run completes due to dbms_output limitations. This is the default.
+--          trace    - write output to server process tracefile
+--                     (you must have execute permission on sys.dbms_system.ksdwrt() for that,
+--                      you can use both out and trace parameters together if you like )
+--
+--          pagesize - display header lines after X snapshots. if pagesize=0 don't display
+--                     any headers. pagesize=-1 will display a terse header only once
+--
+--          gather   - if omitted, gathers s,t,w statistics (see below)
+--                   - if specified, then gather following:
+--
+--                        Session-level stats:
+--                          s - Session Statistics from gv$sesstat
+--                          t - Session Time model info from gv$sess_time_model
+--                          w - Session Wait statistics from gv$session_event and gv$session_wait
+--
+--                        Instance-level stats:
+--                          l - instance Latch get statistics ( gets + immediate_gets )
+--                          e - instance Enqueue lock get statistics
+--                          b - buffer get Where statistics -- useful in versions up to 10.2.x
+--                          a - All above
+--
+--          sinclude - if specified, then show only GV$SESSTAT stats which match the
+--                     LIKE pattern of sinclude (REGEXP_LIKE in 10g+)
+--          linclude - if specified, then show only GV$LATCH latch stats which match the
+--                     LIKE pattern of linclude (REGEXP_LIKE in 10g+)
+--          tinclude - if specified, then show only GV$SESS_TIME_MODEL stats which match the
+--                     LIKE pattern of tinclude (REGEXP_LIKE in 10g+)
+--          winclude - if specified, then show only GV$SESSION_EVENT wait stats which match the
+--                     LIKE pattern of winclude (REGEXP_LIKE in 10g+)
+--
+--          you can combine above parameters in any order, separate them by commas
+--          !!!don't use spaces as otherwise they are treated as next parameters by sqlplus   !!!
+--          !!!if you want to use spaces, enclose the whole sqlplus parameter in doublequotes !!!
+--
+--      <seconds_in_snap> - the number of seconds between taking snapshots
+--      <snapshot_count>  - the number of snapshots to take ( maximum value is power(2,31)-1 )
+--
+--      <sids_to_snap> can be either one sessionid, multiple sessionids separated by
+--      commas or a SQL statement which returns a list of SIDs (if you need spaces
+--      in that parameter text, enclose it in double quotes).
+--
+--      if you want to snap ALL sids, use "all" as value for
+--      <sids_to_snap> parameter
+--
+--      alternatively you can use "select sid from gv$session" as value for <sids_to_snap>
+--      parameter to capture all SIDs. you can write any query (with multiple and/or)
+--      conditions to specify complex rules for capturing only the SIDs you want
+--
+--      starting from version 3.0 there are further session_id selection options available in 
+--      instead of sid you can write such expressions for snapper's <sids_to_snap> parameter:
+--
+--         sid=123     -- take sid 123 only (the same as just writing 123)
+--         user=tanel  -- take all sessions where username is 'tanel' (case insensitive)
+--                     -- this is the same as writing following subquery for the 
+--                     -- <sids_to_snap> parameter:
+--                            select sid from gv$session where lower(username) like lower('tanel')
+--                     
+--         user=tanel% -- take all sessions where username begins with 'tanel%' (case insensitive)
+--                     -- the = means actually LIKE in SQL terms in this script
+-- 
+--          spid=1234  -- all these 3 parameters do the same thing:
+--          ospid=1234 -- they look up the sessions(s) where the processes OS PID=1234
+--          pid=1234   -- this is useful for quickly looking up what some OS process is doing
+--                     -- if it consumes too much of some resource
+--          qc=123     
+--          qcsid=123  -- show query coordinator and all PX slave sessions
+--
+--         program=sqlplus%     -- the following examples filter by corresponding gv$session coulmns 
+--         machine=linux01      -- machine
+--         osuser=oracle        -- os username
+--         module=HR            -- module
+--         "action=Find Order"  -- note the quotes because there is a space inside the parameter
+--                              -- value
+--         client_id=tanelpoder -- show only sessions where client_identifier is set to tanelpoder
+--                              -- this is very useful in cases with (properly instrumented)
+--                              -- connection pools
+--
+--
+--      Note that if you want to change some "advanced" snapper configuration parameters
+--      or default values then search for CONFIG in this file to see configurable
+--      variable section
+--
+--
+--  Examples:
+--      NB! Read the online examples, these are more detailed and list script output too!
+--
+--          http://tech.e2sn.com/oracle-scripts-and-tools/session-snapper
+--
+--      @snapper ash,stats 1 1 515
+--      (Output one 1-second snapshot of session 515 using dbms_output and exit
+--       Wait, gv$sesstat and gv$sess_time_model statistics are reported by default
+--       Starting from V3 the ASH style session activity report is shown as well)
+--
+--      @snapper stats,gather=w 1 1 515
+--      (Output one 1-second snapshot of session 515 using dbms_output and exit
+--       only Wait event statistics are reported, no ASH)
+--
+--      @snapper ash,gather=st 1 1 515
+--      (Output one 1-second snapshot of session 515 using dbms_output and exit
+--       only gv$sesstat and gv$sess_Time_model statistics are gathered + ASH)
+--
+--      @snapper trace,ash,gather=stw,pagesize=0 10 90 117,210,313
+--      (Write 90 10-second snapshots into tracefile for session IDs 117,210,313
+--       all statistics are reported, do not print any headers)
+--
+--      @snapper trace,ash 900 999999999 "select sid from v$session"
+--      (Take a snapshot of ALL sessions every 15 minutes and write the output to trace,
+--       loop (almost) forever )
+--
+--      @snapper out,trace 300 12 "select sid from v$session where username='APPS'"
+--      (Take 12 5-minute snapshots of all sessions belonging to APPS user, write
+--       output to both dbms_output and tracefile)
+--
+--  Notes:
+--
+--      Snapper does not currently detect if a session with given SID has
+--      ended and been recreated between snapshots, thus it may report bogus
+--      statistics for such sessions. The check and warning for that will be
+--      implemented in a future version.
+--
+

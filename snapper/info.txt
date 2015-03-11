@@ -1,0 +1,56 @@
+------------------------------------------------------------------------------
+--
+-- File name:   snapper.sql (Oracle Session Snapper v4)
+-- Purpose:     An easy to use Oracle session-level performance measurement tool
+--              which does NOT require any database changes nor creation of any
+--              database objects!
+--
+--              This is very useful for ad-hoc performance diagnosis in environments
+--              with restrictive change management processes, where creating
+--              even temporary tables and PL/SQL packages is not allowed or would
+--              take too much time to get approved.
+--
+--              All processing is done by a few sqlplus commands and an anonymous
+--              PL/SQL block, all that's needed is SQLPLUS access (and if you want
+--              to output data to server-side tracefile then execute rights on
+--              DBMS_SYSTEM). Snapper only queries some V$ views (and in advanced
+--              mode some X$ fixed tables, but it does not enable any traces nor
+--              use oradebug.
+--
+--              The output is formatted the way it could be easily post-processed
+--              by either Unix string manipulation tools or loaded to spreadsheet.
+--
+--              Snapper v4 supports RAC and requires Oracle 10.1 or a newer DB version.
+--              Snapper v3.5 works on Oracle versions starting from Oracle 9.2 (no RAC support)
+--
+-- Note1:       The "ASH" functionality in Snapper just samples GV$SESSION view,
+--              so you do NOT need Diagnostics Pack licenses to use Snapper's
+--              "ASH" output
+--
+-- Note2:       Snapper just reports you performance metric deltas in a snapsphot
+--              and does not attempt to solve any performance problems for you.
+--              You still need to interpret and understand these standard Oracle
+--              metrics yourself
+--
+-- Author:      Tanel Poder (tanel@tanelpoder.com)
+-- Copyright:   (c) Tanel Poder - http://blog.tanelpoder.com - All rights reserved.
+--
+-- Disclaimer:  This script is provided "as is", so no warranties or guarantees are
+--              made about its correctness, reliability and safety. Use it at your
+--              own risk!
+--
+-- License:     1) You may use this script for your (or your businesses) purposes for free
+--              2) You may modify this script as you like for your own (or your businesses) purpose,
+--                 but you must always leave this script header (the entire comment section), including the
+--                 author, copyright and license sections as the first thing in the beginning of this file
+--              3) You may NOT publish or distribute this script or any variation of it PUBLICLY
+--                 (including, but not limited to uploading it to your public website or ftp server),
+--                 instead just link to its location in blog.tanelpoder.com
+--              4) You may distribute this script INTERNALLY in your company, for internal use only,
+--                 for example when building a standard DBA toolset to be deployed to all
+--                 servers or DBA workstations 
+--
+--
+-- Thanks to:   Adrian Billington, Jamey Johnston, Marcus Mög, Hans-Peter Sloot
+--              and Ronald Rood for bugfixes, additions and improvements
+
