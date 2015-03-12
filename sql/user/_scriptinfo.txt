@@ -11,3 +11,4 @@ spool_public_synonym_non_sys.sql spool 'create public synonym ...' for all non s
 userinfo.sql                 userinfo from dba_users
 userinfo12.sql               userinfo from dba_users from RDBMS12c
 userinfo2.sql                userinfo from dba_users with lock and expire-date
+userusedspace.sql            used space from dba_segments for users
