@@ -11,12 +11,14 @@ set verify off
 column TABLE_NAME format a30
 column owner format a30
 column column_name format a30
+column cache format a5
 
 
 select owner
       ,table_name
       ,column_name
       ,in_row
+      ,cache
 from dba_lobs a
 where  a.owner like ('%&1')
   and a.table_name like ('&2')
