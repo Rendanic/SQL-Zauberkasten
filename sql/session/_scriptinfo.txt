@@ -31,6 +31,7 @@ sw10block.sql                Display blocking sessions from v$session
 sw10trace.sql                display state for sql-Trace for all non background sessions
 swall.sql                    Dispay all sessions from v$session
 swtop.sql                    display all Sessions from v$session ordered by seconds in wait
+swuser.sql                   display Sessions for a connected user from v$session
 swtop20.sql                  display last 20 Sessions from v$session ordered by seconds in wait
 transaction.sql              active transactions
 transaction10.sql            active transactions with running sqlstatement
