@@ -26,6 +26,8 @@ set_env()
 		SQLPLUSPARAM="/ as sysdba"
 	fi
 
+        export EDITOR=${EDITOR:-vi}
+
 	rlwrapoptions="-w 200 -i"
 
 	OSNAME=$(uname -o)
