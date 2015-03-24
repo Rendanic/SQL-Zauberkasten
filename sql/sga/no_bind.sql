@@ -64,7 +64,7 @@ begin
 				dbms_output.put_line('Literal:'||qstring||' address: '||b_myadr); 
 					close getsqlcode; 
 			end if; 
-		clo	se isthisliteral; 
+		close isthisliteral; 
 		end if;	 
 		close kglcur; 
 		Exit When my_statement%NOTFOUND; 
