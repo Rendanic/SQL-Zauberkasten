@@ -4,4 +4,5 @@ asm_disk_fg1.sql             information for all asm-disks with Failgroups
 asm_disk_fg2.sql             information for all asm-disks with Failgroups
 asm_files.sql                list alls files on asm-Instance for given name
 dgstat1.sql                  Get statistical data for a given Diskgroup
+used_space_dg_db.sql         List usage in Diskgroup for given Database. '%' can be used
 maas.sql                     Detailinformation for all Diskgroups
