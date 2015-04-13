@@ -12,11 +12,13 @@ column limit format 999999
 column USED_MB format 999999
 column RECLAIM_MB format 999999
 column NUMBER_OF_FILES format 9999
+column pct_claimed format 990.90
 
 select round(SPACE_LIMIT/1024/1024) LIMIT
       ,round(SPACE_USED/1024/1024) USED_MB
       ,round(SPACE_RECLAIMABLE/1024/1024) RECLAIM_MB
       ,NUMBER_OF_FILES
+      ,ROUND( 100 - (space_limit - space_used + space_reclaimable)*100/space_limit, 2) pct_claimed
   from V$RECOVERY_FILE_DEST;
 
 column name format a50
