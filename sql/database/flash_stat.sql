@@ -1,6 +1,7 @@
 --
 -- Thorsten Bruhns (Thorsten.Bruhns@opitz-consulting.de)
--- $Id: flash_stat.sql 60 2010-03-13 11:20:37Z tbr $
+--
+-- Date: 20.05.2015
 --
 -- some informationen for flash-recovery area and flashback
 --
@@ -8,10 +9,10 @@
 set pages 1000
 set lines 120
 
-column limit format 999999
-column USED_MB format 999999
-column RECLAIM_MB format 999999
-column NUMBER_OF_FILES format 9999
+column limit format 99999999
+column USED_MB format 99999999
+column RECLAIM_MB format 99999999
+column NUMBER_OF_FILES format 99999
 column pct_claimed format 990.90
 
 select round(SPACE_LIMIT/1024/1024) LIMIT
