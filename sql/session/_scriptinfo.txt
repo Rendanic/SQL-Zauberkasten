@@ -2,6 +2,7 @@ diag_info.sql                Displays info from gv$diag_info
 cancel_exec.sql              Cancel a running operation in Session
 cs.sql                       alter session set current_schema
 hash2sqlid.sql               get sqlid for OLD_HASH_VALUE from sqlarea
+sqlid2hash.sql               get OLD_HASH_VALUE for sqlid from sqlarea
 kill_session.sql             kills a given session
 lock_internal.sql            Information from dba_lock_internal
 lock_tree.sql                Similar to utllockt.sql, but RAC-aware and with more detail
