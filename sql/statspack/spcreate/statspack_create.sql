@@ -47,7 +47,7 @@ end;
 PROMPT Creating Jobs for Snapshot-Creation. Must be done with dbms_job due to instance
 PROMPT stickyness for RAC-Databasese!
 
-
+set serveroutput on
 declare 
 jobno number;
 begin
@@ -62,6 +62,7 @@ begin
                , TRUE
                , cur_inst.instance_number);
      commit;
+     dbms_output.put_line('Job #'||jobno||' created.');
   end loop;
 end;
 /
@@ -72,15 +73,7 @@ column job format 9999
 column what format a40
 column interval format a30
 column ins format 999
-select job,what,interval,instance ins from all_jobs;
 
 show parameter job_queue_processes
 
-set pages 1000 lines 140
-
-column job format 9999
-column what format a40
-column interval format a30
-column ins format 999
 select job,what,interval,instance ins from all_jobs;
-
