@@ -2,9 +2,11 @@ diag_info.sql                Displays info from gv$diag_info
 cancel_exec.sql              Cancel a running operation in Session
 cs.sql                       alter session set current_schema
 hash2sqlid.sql               get sqlid for OLD_HASH_VALUE from sqlarea
+sqlid2hash.sql               get OLD_HASH_VALUE for sqlid from sqlarea
 kill_session.sql             kills a given session
 lock_internal.sql            Information from dba_lock_internal
 lock_tree.sql                Similar to utllockt.sql, but RAC-aware and with more detail
+lock_tree_kill.sql           Similar to utllockt.sql, but RAC-aware and with more detail
 nlsf.sql                     set nls_date_format in current session
 ospud.sql                    Display Information for a given SID from v$session
 osstat.sql                   get Information from v$osstat for given seconds
@@ -30,6 +32,7 @@ sw10all.sql                  non background  sessions from v$session
 sw10block.sql                Display blocking sessions from v$session
 sw10trace.sql                display state for sql-Trace for all non background sessions
 swall.sql                    Dispay all sessions from v$session
+swpqwait.sql                 Display waiting PQ sessions in Queue
 swtop.sql                    display all Sessions from v$session ordered by seconds in wait
 swuser.sql                   display Sessions for a connected user from v$session
 swtop20.sql                  display last 20 Sessions from v$session ordered by seconds in wait
