@@ -3,7 +3,12 @@
 --
 -- prints DDL from dbms_metadata for PROC
 --
--- 
+-- Scheduler Jobs must be exported with TYPE=PROCOBJ
+-- There is no special parameter for the different object types for scheduler
+-- jobs.
+-- Export of scheduler Objects from SYS-Schema is not possible at the
+-- moment. (Tested until 12.1.0.2)
+
 --
 
 prompt 1. Parameter : OWNER
