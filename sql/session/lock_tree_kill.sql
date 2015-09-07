@@ -2,6 +2,7 @@
 -- RAC-aware und mit Details
 --
 -- Uwe Kuechler (uwe.kuechler@opitz-consulting.com)
+-- Thorsten Bruhns (thorsten.bruhns@opitz-consulting.com)
 
 col sid for a10
 col inst_id for a2
@@ -36,9 +37,6 @@ select lpad(' ', 2*(level-1)) || l.waiting_session sid
      , COALESCE( S.SQL_ID, S.PREV_SQL_ID ) sql_id
      , s.OSUSER
      , s.USERNAME
-     , SUBSTR(s.PROGRAM,1,20) program
-     , SUBSTR(s.module,1,20) module
-     , s.action
      , 'alter system kill session ' || '''' || s.SID || ', ' || s.serial# || ', @' || s.inst_id ||'''' || ' immediate;' kill_session_stmt
   from LOCK_TREE l
      , gv$session s
