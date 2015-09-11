@@ -41,6 +41,7 @@ select PLATFORM_NAME
  
 
 @@vi
+@@redothread
 
 set feedback off
 

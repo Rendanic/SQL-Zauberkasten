@@ -18,6 +18,7 @@ log_hist_stat2.sql           Statistic Information for number of Log Switches of
 network_acl.sql              Displays NETWORK_ACLS from Data-Dictionary
 pgastat.sql                  Info from workarea Policy
 pgastat2.sql                 pga information for all Sessions
+redothread.sql               Details about the redo thread in all instances
 registry.sql                 info from dba_registry
 vd10.sql                     info from gv$instance only 10g or newer
 vi.sql                       info from gv$instance
