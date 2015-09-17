@@ -7,7 +7,7 @@
 
 set lines 120 pages 100
 
-column name format a20
+column path format a40
 column header_status format a11
 column format mount_status a11
 column format mode_status a11
@@ -19,11 +19,11 @@ column dn format 999
 
 SELECT group_number gn
      , disk_number dn
-     , name
      , FAILGROUP
      , header_status
      , mount_status
      , mode_status
+     , path
 FROM V$ASM_DISK
-order by 1,2
+order by 1,failgroup,path
 ;
