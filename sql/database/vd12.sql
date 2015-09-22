@@ -38,6 +38,7 @@ column Block_change_tracking format a30
 select status Block_change_tracking
 from V$BLOCK_CHANGE_TRACKING;
 
+@@vpdb.sql
 
 @@vi
 @@redothread
