@@ -1,4 +1,6 @@
 current.sql                  Get current PDB from session
+discard_state.sql            discard state for PDB after restart of cdb
+save_state.sql               save state for PDB after restart of cdb
 script_true.sql              set "_ORACLE_SCRIPT"=true in session
 switch.sql                   Set session to container
 trigger_open_all.sql         Create Trigger for starting all pluggable databases
