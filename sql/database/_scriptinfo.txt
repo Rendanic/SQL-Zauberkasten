@@ -21,5 +21,6 @@ pgastat2.sql                 pga information for all Sessions
 redothread.sql               Details about the redo thread in all instances
 registry.sql                 info from dba_registry
 vd10.sql                     info from gv$instance only 10g or newer
+vd12.sql                     info from gv$instance only 12c or newer
 vi.sql                       info from gv$instance
 sysmetric_history.sql        Info from v$sysmetric_history for last 10 min
