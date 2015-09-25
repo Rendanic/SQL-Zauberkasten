@@ -6,7 +6,7 @@ sqlid2hash.sql               get OLD_HASH_VALUE for sqlid from sqlarea
 kill_session.sql             kills a given session
 lock_internal.sql            Information from dba_lock_internal
 lock_tree.sql                Similar to utllockt.sql, but RAC-aware and with more detail
-lock_tree_kill.sql           Similar to utllockt.sql, but RAC-aware and with more detail
+lock_tree_kill.sql           Similar to utllockt.sql, but RAC-aware and with more detail; generates KILL-Statements.
 nlsf.sql                     set nls_date_format in current session
 ospud.sql                    Display Information for a given SID from v$session
 osstat.sql                   get Information from v$osstat for given seconds
