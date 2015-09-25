@@ -20,6 +20,10 @@ select NAME
       ,DBID
       ,OPEN_MODE
       ,restricted
-      ,total_size/1024/1024 ts_MB
+      ,RECOVERY_STATUS RECOVERY
+      ,sum(total_size)/1024/1024 ts_MB
   from v$pdbs
+  group by grouping sets((name, dbid, open_mode, restricted, RECOVERY_STATUS)
+                        ,()
+                        )
 order by 1;

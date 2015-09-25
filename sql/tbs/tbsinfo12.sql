@@ -19,7 +19,7 @@ column minext_kb format 999999999
 column ssm format a8
 
 
-select nvl(b.name, 'CDB')  pdb_name
+select nvl(b.name, 'CDB$ROOT')  pdb_name
       ,a.tablespace_name
       ,a.block_size bs
       ,a.status

@@ -27,7 +27,7 @@ compute sum of free on report
 compute sum of used on report
 compute sum of max_size on report
 
-select nvl(c.name, 'CDB')  pdb,
+select nvl(c.name, 'CDB$ROOT')  pdb,
        nvl(b.tablespace_name,
              nvl(a.tablespace_name,'UNKOWN')) name,
        kbytes_alloc kbytes,
