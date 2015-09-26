@@ -1,11 +1,13 @@
 Der SQL-Zauberkasten ist eine Skriptsammlung fuer Oracle-Datenbanken.
-Die Unterverzeichnisse sind thematisch aufgebaut. 'table' => alles rund um Tabellen, 'session' => alles rund um Sessions
-Der Verzeichnisbaum 'ee' enthaelt Skripte, die Optionen nutzen, die nur in der Enterprise Edition vorhanden sind. Die Nutzung erfordert eine entsprechende Lizenz.
+Die Unterverzeichnisse sind thematisch aufgebaut. 'table' => alles rund um Tabellen, 'session' => alles rund um Sessions usw.
+Der Verzeichnisbaum 'ee' enthaelt Skripte, die Optionen nutzen, die nur in der Enterprise Edition vorhanden sind. Die Nutzung erfordert eine entsprechende Lizenz, die vorhanden sein muß. Es wird nicht geprüft, ob diese Bedingung erfüllt ist.
 In jedem Verzeichnis befindet sich eine Datei mit dem Namen _scriptverzeichnis.txt, in der pro Skript eine einzeilige Beschreibung vorhanden ist.
 
-Im ZIP-Verzeichnis werden jeweils Archive mit den entsprechendes 'tags' abgelegt. Sofern sich genug Aenderungen angesammelt haben, baue ich ein entsprechend neues Archiv.
+Neue Skripte werden per Push-Request nur aufgenommen, wenn sie unter der GPL weiter verteilt werden können.
 
-Skripte werden per Push-Request nur aufgenommen, wenn keine Rechte von Dritten verletzt werden.
+In sql befinden sich mittlerweile ein paar .sh-Skripte, die den praktischen Einsatz erleichtern sollen.
+sq.sh startet SQLPlus mit 'rlwrap sqlplus / as sysdba', so das die Nutzung des Zauberkastens stark vereinfacht wird. Es wird beim Start automatisch die richtige Version von rlwrap gesartet, so das unter Linux problemlos mit 32 und 64bit gearbeitet werden kann.
+Für dem RMAN steht mit rman.sh eine vergleichbare Funktionalität zur Verfügung.
 
 Gruß
 Thorsten Bruhns
