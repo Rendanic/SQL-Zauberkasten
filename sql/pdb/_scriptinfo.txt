@@ -5,3 +5,4 @@ script_true.sql              set "_ORACLE_SCRIPT"=true in session
 switch.sql                   Set session to container
 trigger_open_all.sql         Create Trigger for starting all pluggable databases
 vpdb.sql                     Display information from v$pdbs
+pdb_incarnation.sql                     Display information for PDB Incarnations
