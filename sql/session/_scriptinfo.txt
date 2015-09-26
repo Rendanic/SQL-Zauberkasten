@@ -34,6 +34,7 @@ sw10trace.sql                display state for sql-Trace for all non background 
 swall.sql                    Dispay all sessions from v$session
 swpqwait.sql                 Display waiting PQ sessions in Queue
 swtop.sql                    display all Sessions from v$session ordered by seconds in wait
+swtop12.sql                  display all Sessions from v$session ordered by seconds in wait
 swuser.sql                   display Sessions for a connected user from v$session
 swtop20.sql                  display last 20 Sessions from v$session ordered by seconds in wait
 transaction.sql              active transactions
