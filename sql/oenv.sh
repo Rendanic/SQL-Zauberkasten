@@ -16,9 +16,15 @@ set_ora_env() {
     export ORAENV_ASK ORACLE_SID
     . oraenv > /dev/null
     ORAENV_ASK=$old_ORAENV_ASK
+
+    SQLPLUS=$ORACLE_HOME/bin/sqlplus
+    ORA_VERSION=$($SQLPLUS -V | cut -d" " -f3)
+
     export PS1="[\u@\h \W] (oenv) ("\$\{ORACLE_SID\}") \$ "
     echo "Starting new bash with Environment for ORACLE_SID: "$ORACLE_SID
-    echo "Type exit for leaving the new bash"
+    echo "(oenv) in bash prompt indicates a running bash from oenv.sh. Type exit for leaving."
+    echo "ORACLE_HOME: "$ORACLE_HOME
+    echo "Version:    "$ORA_VERSION" (sqlplus -V)"
     bash
 }
 
@@ -37,17 +43,17 @@ do_sid() {
 
     test -f $oratab || exit 0
 
-    for sidentry in $(cat $oratab | grep -v ^#)
+    for sidentry in $(cat $oratab | grep -v ^# | sort)
     do
         sid=$(echo $sidentry | cut -d":" -f1)
         oracle_home=$(echo $sidentry | cut -d":" -f2)
         check_sid $sid $oracle_home
         if [ $? -eq 0 ] ; then
-            whipsidlist=${whipsidlist}" "$sid" "$sid" "
+            whipsidlist=${whipsidlist}" "$sid" "$oracle_home" "
         fi
     done
 
-    OPTIONS=$(whiptail --title "ORACLE_SID selection" --menu "Choose your ORACLE_SID" 15 60 4 $whipsidlist 3>&1 1>&2 2>&3)
+    OPTIONS=$(whiptail --topleft --title "ORACLE_SID selection" --menu "Choose your ORACLE_SID" 15 60 4 $whipsidlist 3>&1 1>&2 2>&3)
     exitstatus=$?
 
     if [ $exitstatus = 0 ]; then
