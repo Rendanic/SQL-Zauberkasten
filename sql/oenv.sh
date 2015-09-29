@@ -2,11 +2,11 @@
 #
 # Thorsten Bruhns (Thorsten.Bruhns@opitz-consulting.de)
 #
-# Version: 1
-# Date: 27.09.2015
+# Version: 2
+# Date: 29.09.2015
 
 check_env() {
-    which whiptail > /dev/null || (echo "missing whiptail in PATH")    
+    which whiptail > /dev/null || return 1
 }
 
 set_ora_env() {
@@ -47,9 +47,16 @@ do_sid() {
     do
         sid=$(echo $sidentry | cut -d":" -f1)
         oracle_home=$(echo $sidentry | cut -d":" -f2)
+        UNIX95=true ps -ef | awk '{print $NF}' | grep -E '^asm_pmon_'$sid'|^ora_pmon_'$sid'|^xe_pmon_XE' > /dev/null 2>&1
+        if [ $? -eq 0 ] ; then
+            state="up___"
+        else
+            state="down_"
+        fi
+
         check_sid $sid $oracle_home
         if [ $? -eq 0 ] ; then
-            whipsidlist=${whipsidlist}" "$sid" "$oracle_home" "
+            whipsidlist=${whipsidlist}" "$sid" "$state""$oracle_home" "
         fi
     done
 
@@ -63,5 +70,5 @@ do_sid() {
     fi
 }
 
-
+check_env
 do_sid
