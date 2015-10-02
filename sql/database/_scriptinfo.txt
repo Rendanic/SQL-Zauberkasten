@@ -1,7 +1,8 @@
 block_corruption.sql         Display Extents with Block-Corruptions
 dba_cpu_usage_stat.sql       Statistics for CPU-Information
 dbc_license.sql              Displays active licenses in Database Console
-feauture_usage_statistics.sql feauture usage from data-Dictionary
+feauture_usage_statistics.sql used feauture usage from data-Dictionary
+feauture_usage_statistics_all.sql all feauture usage from data-Dictionary
 flash_stat.sql               Information for recovery-area and flashback
 hist_database_instance.sql   Database-Startups from data-dictionary
 log_hist.sql                 gv$log_history
