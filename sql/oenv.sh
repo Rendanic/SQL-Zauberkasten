@@ -2,12 +2,17 @@
 #
 # Thorsten Bruhns (Thorsten.Bruhns@opitz-consulting.de)
 #
-# Version: 2
-# Date: 29.09.2015
+# Version: 3
+# Date: 14.10.2015
 
 check_env() {
     which whiptail > /dev/null || return 1
     DIALOG=$(which dialog 2>/dev/null || which whiptail 2>/dev/null)
+}
+
+set_path() {
+    which rman.sh > /dev/null || export PATH=${BASEDIR}:$PATH
+    export PATH
 }
 
 set_ora_env() {
@@ -94,7 +99,7 @@ do_sid() {
         fi
     done
 
-    OPTIONS=$($DIALOG --topleft --title "ORACLE_SID selection" --menu "Choose your ORACLE_SID" 15 60 4 $whipsidlist 3>&1 1>&2 2>&3)
+    OPTIONS=$($DIALOG  --title "ORACLE_SID selection" --menu "Choose your ORACLE_SID" 15 60 4 $whipsidlist 3>&1 1>&2 2>&3)
     exitstatus=$?
 
     if [ $exitstatus = 0 ]; then
@@ -115,5 +120,8 @@ do_sid() {
     fi
 }
 
+BASEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+set_path
 check_env
 do_sid
