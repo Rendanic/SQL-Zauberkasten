@@ -6,6 +6,7 @@ dbms_metadata2.sql           DDL from dbms_metadata for object with 2 Param
 dbms_metadata_scheduler.sql  DDL from dbms_metadata for scheduler jobs
 dbms_metadata_user.sql       prints DDL for create user with all grants
 dict.sql                     Displays info from DICT
+hint.sql                     Search Hints in V$SQL_HINT
 inv_objects8i.sql            Displays invalid objects in the database
 inv_objects.sql              Displays invalid objects in the database
 obj_dependencies.sql         Displays dependencies for given object
