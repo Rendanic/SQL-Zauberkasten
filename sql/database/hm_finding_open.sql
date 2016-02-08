@@ -3,7 +3,7 @@
 --
 -- Info for open findings from Health-Monitor
 --
--- Date 
+-- Date : 08.02.2016: 08.02.2016
 -- Version: 1
 
 set lines 120 pages 100 
