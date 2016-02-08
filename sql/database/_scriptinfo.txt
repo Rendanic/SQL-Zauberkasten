@@ -5,6 +5,8 @@ feauture_usage_statistics.sql used feauture usage from data-Dictionary
 feauture_usage_statistics_all.sql all feauture usage from data-Dictionary
 flash_stat.sql               Information for recovery-area and flashback
 hist_database_instance.sql   Database-Startups from data-dictionary
+hm_finding_all.sql           Info for all findings from Health-Monitor
+hm_finding_open.sql          Info for open findings from Health-Monitor
 log_hist.sql                 gv$log_history
 log_info.sql                 Get overview from v$log and v$standby_log
 mem_usage_all.sql            detail pga information for all sessions
