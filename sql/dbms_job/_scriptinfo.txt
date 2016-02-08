@@ -1,2 +1,3 @@
 jobinfo.sql                  list existing jobs from dba_jobs
 jobrun.sql                   list running jobs from dba_jobs
+userexport.sql               export ddl for a give job with dbms_job

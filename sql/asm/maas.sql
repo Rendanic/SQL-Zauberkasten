@@ -23,7 +23,7 @@ REM                 |running operation executing in the ASM instance. |
  
 set wrap off
 set lines 155 pages 9999
-col "Group Name" for a6    Head "Group|Name"
+col "Group Name" for a7    Head "Group|Name"
 col "Disk Name"  for a10
 col "State"      for a10
 col "Type"       for a10   Head "Diskgroup|Redundancy"
@@ -34,30 +34,56 @@ col "Variance"   for 99.9  Head "Percent|Disk Size|Variance"
 col "MinFree"    for 99.9  Head "Minimum|Percent|Free"
 col "MaxFree"    for 99.9  Head "Maximum|Percent|Free"
 col "DiskCnt"    for 9999  Head "Disk|Count"
+col "FgCnt"      for 9999  Head "Fail|Groups"
  
 prompt
 prompt ASM Disk Groups
 prompt ===============
- 
+
 SELECT g.group_number  "Group"
-,      g.name          "Group Name"
-,      g.state         "State"
-,      g.type          "Type"
-,      g.total_mb/1024 "Total GB"
-,      g.free_mb/1024  "Free GB"
-,      100*(max((d.total_mb-d.free_mb)/d.total_mb)-min((d.total_mb-d.free_mb)/d.total_mb))/max((d.total_mb-d.free_mb)/d.total_mb) "Imbalance"
-,      100*(max(d.total_mb)-min(d.total_mb))/max(d.total_mb) "Variance"
-,      100*(min(d.free_mb/d.total_mb)) "MinFree"
-,      100*(max(d.free_mb/d.total_mb)) "MaxFree"
-,      count(*)        "DiskCnt"
-FROM v$asm_disk d, v$asm_diskgroup g
-WHERE d.group_number = g.group_number and
-d.group_number <> 0 and
-d.state = 'NORMAL' and
-d.mount_status = 'CACHED'
+     , g.name          "Group Name"
+     , g.state         "State"
+     , g.type          "Type"
+     , g.total_mb/1024 "Total GB"
+     , g.free_mb/1024  "Free GB"
+     , 100*(max((d.total_mb-d.free_mb)/d.total_mb)-min((d.total_mb-d.free_mb)/d.total_mb))/max((d.total_mb-d.free_mb)/d.total_mb) "Imbalance"
+     , 100*(max(d.total_mb)-min(d.total_mb))/max(d.total_mb) "Variance"
+     , 100*(min(d.free_mb/d.total_mb)) "MinFree"
+     , 100*(max(d.free_mb/d.total_mb)) "MaxFree"
+     , count(*)        "DiskCnt"
+     , count(failgroup) "FgCnt"
+  FROM v$asm_disk d
+     , v$asm_diskgroup g
+ WHERE d.group_number = g.group_number
+   AND d.group_number <> 0
+   AND d.state = 'NORMAL'
+   AND d.mount_status = 'CACHED'     -- comment out when on 10g
 GROUP BY g.group_number, g.name, g.state, g.type, g.total_mb, g.free_mb
-ORDER BY 1;
- 
+ORDER BY g.name;
+
+
+prompt
+prompt ASM Fail Groups
+prompt ===============
+
+col disk_group      for a10     Head "Disk|Group"
+col failgroup       for a10     Head "Failure|Group"
+col num_disks       for 999     Head "# of|Disks"
+break on dg_name skip 1 nodup on report
+compute sum of num_disks on report
+
+SELECT g.name disk_group
+     , d.failgroup
+     , count(d.disk_number) num_disks
+  FROM v$asm_disk d
+     , v$asm_diskgroup g
+ WHERE d.group_number(+) = g.group_number
+ GROUP BY g.name, failgroup
+ ORDER BY g.name, failgroup
+;
+clear break
+
+
 prompt ASM Disks In Use
 prompt ================
  
@@ -68,7 +94,7 @@ col "Mode"           for a8
 col "State"          for a8
 col "Created"        for a10          Head "Added To|Diskgroup"
 --col "Redundancy"     for a10
---col "Failure Group"  for a10  Head "Failure|Group"
+col "Failure Group"  for a10  Head "Failure|Group"
 col "Path"           for a19
 --col "ReadTime"       for 999999990    Head "Read Time|seconds"
 --col "WriteTime"      for 999999990    Head "Write Time|seconds"
@@ -87,7 +113,7 @@ select group_number  "Group"
 ,      total_mb/1024 "Total GB"
 ,      free_mb/1024  "Free GB"
 ,      name          "Disk Name"
---,      failgroup     "Failure Group"
+,      failgroup     "Failure Group"
 ,      path          "Path"
 --,      read_time     "ReadTime"
 --,      write_time    "WriteTime"
@@ -98,6 +124,7 @@ select group_number  "Group"
 from   v$asm_disk_stat
 where header_status not in ('FORMER','CANDIDATE')
 order by group_number
+,        failgroup
 ,        disk_number
 /
  

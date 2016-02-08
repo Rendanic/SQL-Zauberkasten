@@ -1,4 +1,5 @@
 block_corruption.sql         Display Extents with Block-Corruptions
+control_sections.sql         Details about Controlfile sections
 dba_cpu_usage_stat.sql       Statistics for CPU-Information
 dbc_license.sql              Displays active licenses in Database Console
 feauture_usage_statistics.sql used feauture usage from data-Dictionary
