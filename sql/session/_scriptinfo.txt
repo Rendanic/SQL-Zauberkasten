@@ -13,6 +13,7 @@ osstat.sql                   get Information from v$osstat for given seconds
 pid2sid.sql                  get process id for SID
 resumable.sql                Display Resumable Sessions 
 pid2sid.sql                  get session information for process id
+row_lock_wait.sql            List all non background session with locked object informations
 sessioni.sql                 some other Session Information for given SID
 connect_info.sql             v$session_connect_info for all sessions
 sess_mem_usage.sql           Detail Memory Informations for a Session
