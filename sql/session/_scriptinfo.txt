@@ -16,6 +16,7 @@ pid2sid.sql                  get session information for process id
 row_lock_wait.sql            List all non background session with locked object informations
 sessioni.sql                 some other Session Information for given SID
 connect_info.sql             v$session_connect_info for all sessions
+si11.sql                     detail information for a session with short history
 sess_mem_usage.sql           Detail Memory Informations for a Session
 sistat.sql                   some sesstat information for given SID
 slo.sql                      Session Long Operations
