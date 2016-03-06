@@ -24,7 +24,7 @@ REM                 |running operation executing in the ASM instance. |
 set wrap off
 set lines 155 pages 9999
 col "Group Name" for a7    Head "Group|Name"
-col "Disk Name"  for a10
+col "Disk Name"  for a12
 col "State"      for a10
 col "Type"       for a10   Head "Diskgroup|Redundancy"
 col "Total GB"   for 9,990 Head "Total|GB"
@@ -51,7 +51,7 @@ SELECT g.group_number  "Group"
      , 100*(min(d.free_mb/d.total_mb)) "MinFree"
      , 100*(max(d.free_mb/d.total_mb)) "MaxFree"
      , count(*)        "DiskCnt"
-     , count(failgroup) "FgCnt"
+     , COUNT(DISTINCT failgroup) "FgCnt"
   FROM v$asm_disk d
      , v$asm_diskgroup g
  WHERE d.group_number = g.group_number
