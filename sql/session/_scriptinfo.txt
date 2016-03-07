@@ -1,6 +1,7 @@
 diag_info.sql                Displays info from gv$diag_info
 cancel_exec.sql              Cancel a running operation in Session
 cs.sql                       alter session set current_schema
+gsi11.sql                    detail information for a given session over all instances
 hash2sqlid.sql               get sqlid for OLD_HASH_VALUE from sqlarea
 sqlid2hash.sql               get OLD_HASH_VALUE for sqlid from sqlarea
 kill_session.sql             kills a given session
