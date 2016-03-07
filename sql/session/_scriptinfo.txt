@@ -43,3 +43,4 @@ swtop20.sql                  display last 20 Sessions from v$session ordered by 
 transaction.sql              active transactions
 transaction10.sql            active transactions with running sqlstatement
 wait_hist.sql                information from v$session_wait_history for SID
+waiters.sql                  info from dba_waiters with parameter
