@@ -29,6 +29,7 @@ from
 where grantee like '&1'
   and grantee not in ('SYS', 'SYSTEM'
                      ,'APEX_040200'
+                     ,'APEX_040000'
                      ,'AQ_ADMINISTRATOR_ROLE'
                      ,'CTXSYS'
                      ,'DBSNMP'
