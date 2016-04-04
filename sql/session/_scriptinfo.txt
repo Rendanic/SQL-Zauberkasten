@@ -1,6 +1,7 @@
 diag_info.sql                Displays info from gv$diag_info
 cancel_exec.sql              Cancel a running operation in Session
 cs.sql                       alter session set current_schema
+gsi11.sql                    detail information for a given session over all instances
 hash2sqlid.sql               get sqlid for OLD_HASH_VALUE from sqlarea
 sqlid2hash.sql               get OLD_HASH_VALUE for sqlid from sqlarea
 kill_session.sql             kills a given session
@@ -13,8 +14,10 @@ osstat.sql                   get Information from v$osstat for given seconds
 pid2sid.sql                  get process id for SID
 resumable.sql                Display Resumable Sessions 
 pid2sid.sql                  get session information for process id
+row_lock_wait.sql            List all non background session with locked object informations
 sessioni.sql                 some other Session Information for given SID
 connect_info.sql             v$session_connect_info for all sessions
+si11.sql                     detail information for a session with short history
 sess_mem_usage.sql           Detail Memory Informations for a Session
 sistat.sql                   some sesstat information for given SID
 slo.sql                      Session Long Operations
@@ -40,3 +43,4 @@ swtop20.sql                  display last 20 Sessions from v$session ordered by 
 transaction.sql              active transactions
 transaction10.sql            active transactions with running sqlstatement
 wait_hist.sql                information from v$session_wait_history for SID
+waiters.sql                  info from dba_waiters with parameter

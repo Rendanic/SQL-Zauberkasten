@@ -1,2 +1,4 @@
 audi.sql                           Audit settings information
+critprivs.sql                      Display critical priviledges for Users
+exttrail.sql                       Display last 250 entries from DBA_COMMON_AUDIT_TRAILDBA_COMMON_AUDIT_TRAIL
 deploy_automatic_audit_purging.sql Deploy audit purge for 7 days
