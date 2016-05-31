@@ -1,19 +1,24 @@
 --
 -- Thorsten Bruhns (Thorsten.Bruhns@opitz-consulting.de)
--- $Id: obj_info.sql 88 2010-03-23 20:50:17Z tbr $
 --
 -- Displays information from dba_objects
 --
-prompt Parameter 1: Object-Owner
-prompt Parameter 2: Object-Name
+-- Date: 31.05.2016
+
+-- Parameter 1: Object-Owner
+-- Parameter 2: Object-Name
 
 column object_name format a30
 column object_type format a20
 column owner format a20
 column status format a10
-column object_id format 9999999
+column last_ddl format a17
+column created format a17
+
 set lines 130
 set pages 200
+set verify off
+
 select object_id
       ,owner
       ,object_name
@@ -26,4 +31,3 @@ select object_id
    and object_name like '&2'
 order by object_name, object_type
 ;
-
