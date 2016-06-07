@@ -170,7 +170,20 @@ from   v$asm_disk
 where header_status in ('FORMER','CANDIDATE')
 order by path
 /
- 
+
+prompt Disk Group Attributes
+prompt =====================
+col parameter for a32
+col value     for a10
+break on name skip 1 nodup on report
+SELECT g.name disk_group, a.name AS parameter, a.value
+  FROM v$asm_attribute a;
+     , v$asm_diskgroup g
+ WHERE a.group_number = g.group_number
+ ORDER BY g.name, a.name
+/
+clear break
+
 prompt Current ASM disk operations
 prompt ===========================
 select *
