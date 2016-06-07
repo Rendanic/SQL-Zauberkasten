@@ -1,4 +1,5 @@
 dplan.sql                    display plan for last explain in current session
+dplanadv.sql                 display advanced plan for last explain in current session
 dplan9i.sql                  display plan for statement_id
 dplanallstatslast.sql        Display plan for last sql with 'allstats_last'
 dplanawr.sql                 display plan for sql_id from AWR

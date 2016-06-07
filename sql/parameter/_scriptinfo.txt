@@ -1,3 +1,4 @@
+deprecated.sql               Displays deprecated parameters
 ksppi.sql                    information from x$ksppi (all init.ora-Parameters)
 nondefaultparam.sql          Displays all non default init.ora-Parameter
 paraminfo.sql                Detailinfo for a parameter

@@ -3,10 +3,13 @@
 --
 -- Uwe Kuechler (uwe.kuechler@opitz-consulting.com)
 -- Thorsten Bruhns (thorsten.bruhns@opitz-consulting.com)
+--
+-- Date: 07.06.2016
 
-col sid for a10
+col wsid for a6
 col inst_id for a2
 col username for a10
+col winst format 99
 col osuser for a10
 col module for a10
 col action for a10
@@ -29,8 +32,8 @@ with BLOCKERS as(
   select waiting_instance, waiting_session, null, null
     from BLOCKERS
 )
-select lpad(' ', 2*(level-1)) || l.waiting_session sid
-     , l.waiting_instance inst_id
+select lpad(' ', 2*(level-1)) || l.waiting_session wsid
+     , l.waiting_instance winst
      , s.status
      , SUBSTR( q.sql_text, 1, 30 ) sql_text
      , COALESCE( S.SQL_ID, S.PREV_SQL_ID ) sql_id

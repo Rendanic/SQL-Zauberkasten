@@ -1,0 +1,1 @@
+standby_history.sql          History of Archivelogs in DBVisit Standby for last 12 hours
