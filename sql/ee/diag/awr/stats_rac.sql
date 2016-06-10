@@ -6,9 +6,8 @@
 -- Metalink: Manual querying AWR for trend analysis and capacity planning [ID 422414.1]
 --
 -- Date: 10.06.2016
-AUDIT --
 
-set lines 140
+set linesize 140
 set pages 50
 set verify off
 
