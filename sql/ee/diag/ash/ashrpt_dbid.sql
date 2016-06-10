@@ -1,6 +1,6 @@
 -- Parameter 1: DB-ID
--- Parameter 2: Begin (ddmmyyyyhh24mi)
--- Parameter 3: End (ddmmyyyyhh24mi)
+-- Parameter 2: Begin (yymmddhh24mi)
+-- Parameter 3: End (yymmddhh24mi)
 -- Parameter 4: Instance-Id
 -- Parameter 5: Spooldirectory (requires a '/' at the end!)
 --
@@ -40,8 +40,8 @@ spool &spoolfile
 select output
 from table(dbms_workload_repository.ASH_GLOBAL_REPORT_TEXT(&1
                                                    ,&4
-                                                   ,to_date('&2', 'ddmmyyhh24mi')
-                                                   ,to_date('&3', 'ddmmyyhh24mi')
+                                                   ,to_date('&2', 'yymmddhh24mi')
+                                                   ,to_date('&3', 'yymmddhh24mi')
                                                   )
           )
 ;
