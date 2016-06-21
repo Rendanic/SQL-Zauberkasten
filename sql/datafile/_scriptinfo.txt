@@ -9,4 +9,5 @@ dbf_max_block.sql            highest block in Datafile
 dbf_minsize.sql              generates SQL for min resize of all datafiles
 set_maxsize_all_files.sql    enable autoextend on all datafiles with maxsize
 modify_default_extend.sql    spool alter database datafile for default next extend
+offline.sql                  Displays Offline Datafiles
 rename_files.sql             generates SQL for renaming data-, temp- and redologfiles

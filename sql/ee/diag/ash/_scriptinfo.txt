@@ -1,2 +1,4 @@
 ash.sql                      Active Session History Information for given SID
 ash2.sql                     Active Session History Information for given SID
+ashrpt_dbid.sql              ASH-Report for given time and DBID filtered for Service
+ashrpt_dbid_serv.sql         ASH-Report for given time and DBID filtered for Service
