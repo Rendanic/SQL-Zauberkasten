@@ -77,3 +77,17 @@ column ins format 999
 show parameter job_queue_processes
 
 select job,what,interval,instance ins from all_jobs;
+
+-- Check for missing column bug in 12.1
+set feedback off
+  WITH c AS( 
+SELECT COUNT(column_name) nt FROM dba_tab_columns
+ WHERE owner = 'PERFSTAT' and table_name = 'STATS$SQL_PLAN' and column_name = 'TIMESTAMP')
+     , I as (select version from v$instance)
+SELECT 'Missing Column "TIMESTAMP" in table "STATS$SQL_PLAN"!'||CHR(10)||
+       'You might consider adding it by issuing:'||CHR(10)||
+       'ALTER TABLE perfstat.stats$sql_plan ADD timestamp INVISIBLE AS (cast(NULL AS DATE));'
+       as WARNING
+  FROM c, I
+ WHERE c.nt = 0
+   AND I.VERSION BETWEEN '12.1' AND '12.2';
