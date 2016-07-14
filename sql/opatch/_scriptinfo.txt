@@ -1,0 +1,1 @@
+sqlpatch.sql                 get insalled Patches from ORACLE_HOME+Database
