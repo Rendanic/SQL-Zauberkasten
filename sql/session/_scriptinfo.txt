@@ -15,6 +15,7 @@ pid2sid.sql                  get process id for SID
 resumable.sql                Display Resumable Sessions 
 pid2sid.sql                  get session information for process id
 row_lock_wait.sql            List all non background session with locked object informations
+grow_lock_wait.sql           List all non background session with locked object informations - RAC aware
 sessioni.sql                 some other Session Information for given SID
 connect_info.sql             v$session_connect_info for all sessions
 si11.sql                     detail information for a session with short history
