@@ -5,6 +5,7 @@ gsi11.sql                    detail information for a given session over all ins
 hash2sqlid.sql               get sqlid for OLD_HASH_VALUE from sqlarea
 sqlid2hash.sql               get OLD_HASH_VALUE for sqlid from sqlarea
 kill_session.sql             kills a given session
+gkill_session.sql            kills a given session on instance
 lock_internal.sql            Information from dba_lock_internal
 lock_tree.sql                Similar to utllockt.sql, but RAC-aware and with more detail
 lock_tree_kill.sql           Similar to utllockt.sql, but RAC-aware and with more detail; generates KILL-Statements.

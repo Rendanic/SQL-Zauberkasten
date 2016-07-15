@@ -1,0 +1,12 @@
+--
+-- Thorsten Bruhns (Thorsten.Bruhns@opitz-consulting.com)
+--
+-- kills a given session on instance
+--
+-- Date: 15.07.2016
+-- Version: 1
+--
+-- Parameter 1. SessionID
+-- Parameter 2. SerialNr
+--
+alter system kill session '&1,&2,@&3';
