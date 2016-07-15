@@ -33,7 +33,7 @@ select status
       ,event
       ,BLOCKING_SESSION BSSID
       ,BLOCKING_INSTANCE BI
-      ,SQL_ID
+      ,nvl(SQL_ID, 'P:'||prev_sql_id)
       ,ROW_WAIT_ROW# RWR
       ,ROW_WAIT_BLOCK# ROW_BLOCK
       ,ROW_WAIT_FILE# file#
