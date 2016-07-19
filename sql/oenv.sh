@@ -77,7 +77,7 @@ do_sid() {
     # Ist ein RAC ueberhaupt moeglich?
 
     # sorting is importing for RAC. orcl comes after orcl1 if that is configured in oratab
-    for sidentry in $(cat $oratab | grep -v ^# | sort -u)
+    for sidentry in $(cat $oratab | grep -v ^# | grep -v "^\-MGMTDB:" | sort -u)
     do
         sid=$(echo $sidentry | cut -d":" -f1)
         oracle_home=$(echo $sidentry | cut -d":" -f2)
