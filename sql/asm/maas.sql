@@ -2,6 +2,10 @@ REM *** MAAS: Mutter Aller ASM-Skripte ***
 REM --------------------------------------
 REM Kudos to John Hallas, http://jhdba.wordpress.com/
 REM
+REM Some modifications by Thorsten Bruhns (thorsten.bruhns@opitz-consulting.com)
+REM
+REM Date: 28.07.2016
+REM
 REM ASM views:
 REM VIEW            |ASM INSTANCE                                     |DB INSTANCE
 REM ----------------------------------------------------------------------------------------------------------
@@ -23,12 +27,12 @@ REM                 |running operation executing in the ASM instance. |
  
 set wrap off
 set lines 155 pages 9999
-col "Group Name" for a7    Head "Group|Name"
-col "Disk Name"  for a12
+col "Group Name" for a10 wrap    Head "Group|Name"
+col "Disk Name"  for a18 wrap
 col "State"      for a10
 col "Type"       for a10   Head "Diskgroup|Redundancy"
-col "Total GB"   for 9,990 Head "Total|GB"
-col "Free GB"    for 9,990 Head "Free|GB"
+col "Total GB"   for 99,990 Head "Total|GB"
+col "Free GB"    for 99,990 Head "Free|GB"
 col "Imbalance"  for 99.9  Head "Percent|Imbalance"
 col "Variance"   for 99.9  Head "Percent|Disk Size|Variance"
 col "MinFree"    for 99.9  Head "Minimum|Percent|Free"
@@ -92,7 +96,7 @@ col "Disk"           for 999
 col "Header"         for a9
 col "Mode"           for a8
 col "State"          for a8
-col "Created"        for a10          Head "Added To|Diskgroup"
+col "Created"        for a8          Head "Added To|Diskgroup"
 --col "Redundancy"     for a10
 col "Failure Group"  for a10  Head "Failure|Group"
 col "Path"           for a19
@@ -120,7 +124,7 @@ select group_number  "Group"
 --,      bytes_read/1073741824    "BytesRead"
 --,      bytes_written/1073741824 "BytesWrite"
 ,      read_time/reads "SecsPerRead"
-,      write_time/writes "SecsPerWrite"
+,      write_time/decode(writes,0,-1,writes) "SecsPerWrite"
 from   v$asm_disk_stat
 where header_status not in ('FORMER','CANDIDATE')
 order by group_number
@@ -132,10 +136,10 @@ Prompt File Types in Diskgroups
 Prompt ========================
 col "File Type"      for a16
 col "Block Size"     for a5    Head "Block|Size"
-col "Gb"             for 9990.00
+col "Gb"             for 99990.00
 col "Files"          for 99990
 break on "Group Name" skip 1 nodup
- 
+
 select g.name                                   "Group Name"
 ,      f.TYPE                                   "File Type"
 ,      f.BLOCK_SIZE/1024||'k'                   "Block Size"
@@ -173,7 +177,7 @@ order by path
 
 prompt Disk Group Attributes
 prompt =====================
-col parameter for a32
+col parameter for a52
 col value     for a10
 break on name skip 1 nodup on report
 SELECT g.name disk_group, a.name AS parameter, a.value
