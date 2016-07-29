@@ -70,8 +70,8 @@ prompt
 prompt ASM Fail Groups
 prompt ===============
 
-col disk_group      for a10     Head "Disk|Group"
-col failgroup       for a10     Head "Failure|Group"
+col disk_group      for a30     Head "Disk|Group"
+col failgroup       for a30     Head "Failure|Group"
 col num_disks       for 999     Head "# of|Disks"
 break on dg_name skip 1 nodup on report
 compute sum of num_disks on report
