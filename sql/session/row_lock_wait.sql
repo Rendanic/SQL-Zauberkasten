@@ -28,15 +28,15 @@ select status
              ,'WAITING', decode(event, 'SQL*Net message from client', 'Idle Session')
              ,state) state
       ,event
-      ,BLOCKING_SESSION BSSID
+      ,dw.HOLDING_SESSION BSSID
       ,SQL_ID
       ,ROW_WAIT_ROW# RWR
       ,ROW_WAIT_BLOCK# ROW_BLOCK
       ,ROW_WAIT_FILE# file#
       ,ROW_WAIT_OBJ# OBJ_ID
-from v$session
-where ROW_WAIT_OBJ# <> -1
-  and type != 'BACKGROUND'
+from v$session v
+join dba_waiters dw on v.sid = dw.WAITING_SESSION
+where type != 'BACKGROUND'
 order by status desc, SECONDS_IN_WAIT desc
 ;
 
