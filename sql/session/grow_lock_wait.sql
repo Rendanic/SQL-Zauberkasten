@@ -25,22 +25,28 @@ column BI format  99
 column II format  99
 column ROW_BLOCK format 99999999
 
-select status
-      ,inst_id ii
-      ,sid
-      ,serial#
-      ,SECONDS_IN_WAIT siw
-      ,event
-      ,BLOCKING_SESSION BSSID
-      ,BLOCKING_INSTANCE BI
-      ,nvl(SQL_ID, 'P:'||prev_sql_id)
-      ,ROW_WAIT_ROW# RWR
-      ,ROW_WAIT_BLOCK# ROW_BLOCK
-      ,ROW_WAIT_FILE# file#
-      ,ROW_WAIT_OBJ# OBJ_ID
-from gv$session
-where ROW_WAIT_OBJ# <> -1
-  and type != 'BACKGROUND'
+select v.status
+      ,v.inst_id ii
+      ,v.sid
+      ,v.serial#
+      ,v.SECONDS_IN_WAIT siw
+      ,v.event
+      ,sl.sid BSSID
+      ,sl.inst_id BI
+      ,nvl(v.SQL_ID, 'P:'||v.prev_sql_id)
+      ,v.ROW_WAIT_ROW# RWR
+      ,v.ROW_WAIT_BLOCK# ROW_BLOCK
+      ,v.ROW_WAIT_FILE# file#
+      ,v.ROW_WAIT_OBJ# OBJ_ID
+from gv$session v
+left outer join gv$lock dw on dw.sid = v.sid
+                          and dw.request <> 0
+                          and dw.inst_id = v.inst_id
+left outer join gv$lock sl on dw.id1 = sl.id1
+                          and dw.id2 = sl.id2
+                          and dw.type = sl.type
+                          and sl.block <> 0
+where v.type != 'BACKGROUND'
 order by status desc, SECONDS_IN_WAIT desc
 ;
 
