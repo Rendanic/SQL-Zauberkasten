@@ -3,6 +3,7 @@ REM --------------------------------------
 REM Kudos to John Hallas, http://jhdba.wordpress.com/
 REM
 REM Some modifications by Thorsten Bruhns (thorsten.bruhns@opitz-consulting.com)
+REM Some modifications by Uwe Kuechler (uwe.kuechler@opitz-consulting.com)
 REM
 REM Date: 28.07.2016
 REM
