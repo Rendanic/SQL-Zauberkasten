@@ -5,6 +5,9 @@
 -- This script creates the statspack-Schema
 -- It must be run on the database-server
 --
+-- 2015-09-03 U. Kuechler: Re-fill STATS$IDLE_EVENT with latest idle events
+-- 2016-06-23 U. Kuechler: Check for missing column bug in 12.1
+-- 2015-09-03 U. Kuechler: Jobnr. ausgeben; doppeltes SQL entfernt.
 -- Anpassung aufgrund folgender Metalink Note:
 -- 361342.1 Subject:    Dump In msqsub() When Querying V$SQL_PLAN
 --
@@ -45,7 +48,7 @@ end;
 
 
 PROMPT Creating Jobs for Snapshot-Creation. Must be done with dbms_job due to instance
-PROMPT stickyness for RAC-Databasese!
+PROMPT stickyness for RAC-Databases!
 
 set serveroutput on
 declare 
@@ -77,6 +80,12 @@ column ins format 999
 show parameter job_queue_processes
 
 select job,what,interval,instance ins from all_jobs;
+
+-- Re-fill STATS$IDLE_EVENT with latest idle events that Oracle
+-- regularly forgets to update.
+delete from STATS$IDLE_EVENT;
+insert into STATS$IDLE_EVENT select name from V$EVENT_NAME where wait_class='Idle';
+commit;
 
 -- Check for missing column bug in 12.1
 set feedback off
