@@ -1,5 +1,6 @@
 aux_stat.sql                 display system statistics
 export_schema_stats.sql      export schema statistics, create destination table before
+fixed_object_stat.sql        Number of object with/without statistics and trnc(last_analyzed)
 get_param.sql                get default statistic parameter from database
 gather_schema_stale9i.sql    gather stale statistics with 10% and xolumns size 1, degree 4
 import_schema_stats.sql      Import schema Statistics from table
