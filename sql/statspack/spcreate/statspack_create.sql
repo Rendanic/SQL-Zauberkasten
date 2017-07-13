@@ -50,6 +50,14 @@ end;
 PROMPT Creating Jobs for Snapshot-Creation. Must be done with dbms_job due to instance
 PROMPT stickyness for RAC-Databases!
 
+/*
+Alternative scheduling intervals:
+'trunc(SYSDATE+1/24,''HH'')'      every hour       (DEFAULT)
+'trunc(SYSDATE+1/24/2,''MI'')'    every 30 minutes
+'trunc(SYSDATE+1/24/4,''MI'')'    every 15 minutes
+'trunc(SYSDATE+1/24/12,''MI'')'   every  5 minutes
+*/
+
 set serveroutput on
 declare 
 jobno number;
