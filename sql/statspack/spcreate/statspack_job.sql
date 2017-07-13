@@ -38,8 +38,15 @@ end;
 
 
 PROMPT Creating Jobs for Snapshot-Creation. Must be done with dbms_job due to instance
-PROMPT stickyness for RAC-Databasese!
+PROMPT stickyness for RAC-Databases.
 
+/*
+Alternative scheduling intervals:
+'trunc(SYSDATE+1/24,''HH'')'      every hour       (DEFAULT)
+'trunc(SYSDATE+1/24/2,''MI'')'    every 30 minutes
+'trunc(SYSDATE+1/24/4,''MI'')'    every 15 minutes
+'trunc(SYSDATE+1/24/12,''MI'')'   every  5 minutes
+*/
 
 declare 
 jobno number;
@@ -68,12 +75,3 @@ column ins format 999
 select job,what,interval,instance ins from all_jobs;
 
 show parameter job_queue_processes
-
-set pages 1000 lines 140
-
-column job format 9999
-column what format a40
-column interval format a30
-column ins format 999
-select job,what,interval,instance ins from all_jobs;
-
