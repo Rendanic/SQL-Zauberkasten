@@ -16,7 +16,12 @@ define default_tablespace=perfstat
 define purgedates=35
 
 -- Interval for Snapshots in dbms_job
-define snapinterval='trunc(SYSDATE+1/24,''HH'')'
+-- Alternative scheduling intervals:
+-- '/* every hour */ trunc(SYSDATE+1/24,''HH'')'            (DEFAULT)
+-- '/* every 30 minutes */ trunc(SYSDATE+1/24/2,''MI'')'
+-- '/* every 15 minutes */ trunc(SYSDATE+1/24/4,''MI'')'
+-- '/* every  5 minutes */ trunc(SYSDATE+1/24/12,''MI'')'
+define snapinterval='/* every hour */ trunc(SYSDATE+1/24,''HH'')'
 
 -- Snaplevel for Snapshots
 -- 5 = Default

@@ -46,17 +46,11 @@ PROMPT Creating Scheduler-Job for purge of statspack-Snapshots
 end;
 /
 
+PROMPT Setting parameters and taking a first snapshot...
+exec statspack.snap(i_snap_level => &snaplevel, i_modify_parameter => 'TRUE')
 
 PROMPT Creating Jobs for Snapshot-Creation. Must be done with dbms_job due to instance
 PROMPT stickyness for RAC-Databases!
-
-/*
-Alternative scheduling intervals:
-'trunc(SYSDATE+1/24,''HH'')'      every hour       (DEFAULT)
-'trunc(SYSDATE+1/24/2,''MI'')'    every 30 minutes
-'trunc(SYSDATE+1/24/4,''MI'')'    every 15 minutes
-'trunc(SYSDATE+1/24/12,''MI'')'   every  5 minutes
-*/
 
 set serveroutput on
 declare 
@@ -67,9 +61,9 @@ begin
   )
   loop
      dbms_job.submit(jobno
-               , 'begin execute immediate ''alter session set "_cursor_plan_unparse_enabled" = false''; statspack.snap(&snaplevel); end;'
+               , 'begin execute immediate ''alter session set "_cursor_plan_unparse_enabled" = false''; statspack.snap; end;'
                , trunc(sysdate+1/24,'HH')
-               , 'trunc(SYSDATE+1/24,''HH'')'
+               , &snapinterval
                , TRUE
                , cur_inst.instance_number);
      commit;
@@ -85,8 +79,8 @@ column what format a40
 column interval format a30
 column ins format 999
 
+select * from stats$statspack_parameter;
 show parameter job_queue_processes
-
 select job,what,interval,instance ins from all_jobs;
 
 -- Re-fill STATS$IDLE_EVENT with latest idle events that Oracle
