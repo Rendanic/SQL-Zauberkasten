@@ -16,13 +16,15 @@ column sid format 99999
 column serial# format 99999
 column username format a20
 column status format a8
+column ii format 99
 column server format a9
 column osuser format a10
 column PROCESS format 999999
 column program format a20
 column client_info format a20
 
-select sid, serial#, username, status, server, osuser, process
+select inst_id ii
+      ,sid, serial#, username, status, server, osuser, process
       ,to_char(logon_time, 'dd.mm.yy hh24:mi:ss') logon
       ,program
       ,client_info
@@ -36,7 +38,7 @@ select sid, serial#, username, status, server, osuser, process
       ,BLOCKING_SESSION_STATUS
       ,BLOCKING_INSTANCE
       ,BLOCKING_SESSION
-  from v$session
+  from gv$session
  where sid=&1
 ;
 
