@@ -4,4 +4,4 @@ logstdb_log.sql              Displays information from DBA_LOGSTDBY_LOG
 logstdb_progress.sql         Displays information from V$LOGSTDBY_PROGRESS
 managed_reco_start.sql       Start Managed Recovery for Data-Guard
 managed_reco_cancel.sql      Stop Managed Recovery for Data-Guard
-
+managed_status.sql           Status from v$managed_standby
