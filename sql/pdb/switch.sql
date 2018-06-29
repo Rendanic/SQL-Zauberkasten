@@ -15,3 +15,10 @@ set verify off
 
 alter session set container = &1;
 
+set termout off
+define gname=idle
+column global_name new_value gname
+col global_name noprint
+select upper(sys_context ('userenv', 'instance_name') || ':' || sys_context('userenv', 'con_name')) global_name from dual;
+set sqlprompt '_user @ &gname:>'
+set termout on
