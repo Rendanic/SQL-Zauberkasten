@@ -2,17 +2,12 @@
 #
 # Thorsten Bruhns (Thorsten.Bruhns@opitz-consulting.de)
 #
-# Version: 3
-# Date: 14.10.2015
+# Version: 4
+# Date: 30.06.2018
 
 check_env() {
     which whiptail > /dev/null || return 1
     DIALOG=$(which dialog 2>/dev/null || which whiptail 2>/dev/null)
-}
-
-set_path() {
-    which rman.sh > /dev/null || export PATH=${BASEDIR}:$PATH
-    export PATH
 }
 
 set_ora_env() {
@@ -70,35 +65,59 @@ do_sid() {
 
     test -f $oratab || exit 0
 
-    # RAC-Funktion ist etwas komplizierter...
-    # Ist ein RAC ueberhaupt moeglich?
-    # Ueber oratab nach pfile und spfile suchen
-    # orcl => initorcl1.ora / spfileorcl1.ora
-    # Ist ein RAC ueberhaupt moeglich?
+    OCRLOC=/etc/oracle/ocr.loc
+    if [ -f $OCRLOC ]
+    then
+        # we have RAC/Restart environment!
+        . $OCRLOC
+        . /etc/oracle/olr.loc
+        SRVCTL=$crs_home/bin/srvctl
+        dbs="$($crs_home/bin/crsctl stat res -w "TYPE = ora.database.type" | grep "^NAME" | cut -d"." -f2)"
 
-    # sorting is importing for RAC. orcl comes after orcl1 if that is configured in oratab
-    for sidentry in $(cat $oratab | grep -v ^# | grep -v "^\-MGMTDB:" | sort -u)
-    do
-        sid=$(echo $sidentry | cut -d":" -f1)
-        oracle_home=$(echo $sidentry | cut -d":" -f2)
+        # add entry for ASM
+        asmline=$(cat /etc/oratab | grep "^+ASM")
+        sid=$(echo $asmline | cut -d":" -f1)
+        oracle_home=$(echo $asmline | cut -d":" -f2)
+        whipsidlist=${whipsidlist}" "$sid" "$oracle_home" "
 
-        UNIX95=true ps -ef | awk '{print $NF}' | grep -E '^asm_pmon_'$sid'|^ora_pmon_'$sid'|^xe_pmon_XE' > /dev/null 2>&1
-        if [ $? -eq 0 ] ; then
-            state="up___"
-        else
-            state="down_"
-        fi
+        for database in $dbs ; do
 
-        check_sid $sid $oracle_home
-        retcode=$?
-        if [ $retcode -ne 99 ] ; then
-            if [ $retcode -ne 0 ] ; then
-                sid=${sid}${retcode}
+            IFS=
+            srvctlout=$($SRVCTL config database -d ${database})
+            sid=$(echo ${srvctlout} | grep "^Database instance:" | tr -d ' ' | cut -d":" -f2)
+            oracle_home=$(echo ${srvctlout} | grep "^Oracle home:" | cut -d":" -f2)
+
+            unset IFS
+            whipsidlist=${whipsidlist}" "$sid" "$oracle_home" "
+        done
+        
+    else
+        # single isntance without Restart
+        for sidentry in $(cat $oratab | grep -v ^# | grep -v "^\-MGMTDB:" | sort -u)
+        do
+            sid=$(echo $sidentry | cut -d":" -f1)
+            oracle_home=$(echo $sidentry | cut -d":" -f2)
+
+            UNIX95=true ps -ef | awk '{print $NF}' | grep -E '^asm_pmon_'$sid'|^ora_pmon_'$sid'|^xe_pmon_XE' > /dev/null 2>&1
+            if [ $? -eq 0 ] ; then
+                state="up___"
+            else
+                state="down_"
             fi
-            whipsidlist=${whipsidlist}" "$sid" "$state""$oracle_home" "
-        fi
-    done
 
+            check_sid $sid $oracle_home
+            retcode=$?
+            if [ $retcode -ne 99 ] ; then
+                if [ $retcode -ne 0 ] ; then
+                    sid=${sid}${retcode}
+                fi
+            unset IFS
+            whipsidlist=${whipsidlist}" "$sid" "$state""$oracle_home" "
+            fi
+        done
+    fi
+
+    echo $whipsidlist
     OPTIONS=$($DIALOG  --title "ORACLE_SID selection" --menu "Choose your ORACLE_SID" 15 60 4 $whipsidlist 3>&1 1>&2 2>&3)
     exitstatus=$?
 
@@ -122,6 +141,5 @@ do_sid() {
 
 BASEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-set_path
 check_env
 do_sid
