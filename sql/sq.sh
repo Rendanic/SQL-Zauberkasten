@@ -1,5 +1,4 @@
 #!/bin/bash 
-# $Id: sq.sh 708 2013-02-17 09:20:02Z tbr $
 #
 # This script starts sqlplus with 'sqlplus / as sysdba'
 # rlwrap is used for getting a readline history of commands!
@@ -11,6 +10,8 @@
 # 
 # we use 'sqlplus / as sysdba' when no parameter is given
 #
+# Version: 2
+# Date:    30.06.2018
 
 set_env()
 {
@@ -23,7 +24,12 @@ set_env()
 	then
 		SQLPLUSPARAM="${*}"
 	else
-		SQLPLUSPARAM="/ as sysdba"
+		if [ "${ORACLE_SID:0:1}" == '+' ]
+		then
+			SQLPLUSPARAM="/ as sysasm"
+		else
+			SQLPLUSPARAM="/ as sysdba"
+		fi
 	fi
 
         export EDITOR=${EDITOR:-vi}
@@ -71,4 +77,3 @@ exec_sqlplus()
 set_env ${*}
 check_env
 exec_sqlplus
-
