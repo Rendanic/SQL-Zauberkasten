@@ -6,3 +6,4 @@ logstdb_progress.sql         Displays information from V$LOGSTDBY_PROGRESS
 managed_reco_start.sql       Start Managed Recovery for Data-Guard
 managed_reco_cancel.sql      Stop Managed Recovery for Data-Guard
 managed_status.sql           Status from v$managed_standby
+observer.sql                 Observer Information from V$FS_FAILOVER_OBSERVERS fo
