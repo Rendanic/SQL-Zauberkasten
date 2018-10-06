@@ -29,10 +29,15 @@ select dbid, name
   from v$database;
 
 column force_logging format a13
-column CDB format a3
-column PLATFORM_NAME format a30
-select force_logging, CDB, PLATFORM_NAME
-from v$database;
+column NLS_CHARACTERSET format a16
+column NLS_NCHAR_CHARACTERSET format a22
+
+select vd.force_logging
+      ,nls1.value NLS_CHARACTERSET
+      ,nls2.value NLS_NCHAR_CHARACTERSET
+from v$database vd
+join nls_database_parameters nls1 on nls1.parameter = 'NLS_CHARACTERSET'
+join nls_database_parameters nls2 on nls2.parameter = 'NLS_NCHAR_CHARACTERSET';
 
 column Block_change_tracking format a30
 select status Block_change_tracking
