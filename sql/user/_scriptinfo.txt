@@ -3,6 +3,7 @@ dba_tab_priv.sql             dba_tab_privs for an object
 network_acls.sql             dba_network_acls
 privs4user.sql               all priviledges for a user 
 privs4user_spool.sql         all priviledges for a user in spool format
+profile.sql                  Info from dba_profiles
 savepwd.sql                  Spool  pre 11g user hash-values from dba_users
 spool_create_role_non_sys.sql spool 'create role identified by ..' for all non sys-users
 spool_create_user_non_sys.sql spool 'create user identified by ..' for all non sys-users
