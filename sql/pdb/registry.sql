@@ -15,6 +15,8 @@ column COMP_ID format a10
 column STATUS format a10
 column VERSION format a12
 
+alter session set "_exclude_seed_cdb_view"=false;
+
 select c.name
       ,r.COMP_NAME
       ,r.COMP_ID
