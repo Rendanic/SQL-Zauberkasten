@@ -5,6 +5,7 @@ list_save_state.sql          list save states for PDBs
 save_state.sql               save state for PDB after restart of cdb
 script_true.sql              set "_ORACLE_SCRIPT"=true in session
 switch.sql                   Set session to container
+sws.sql                      automatic SWitch to Singletenant PDB
 trigger_open_all.sql         Create Trigger for starting all pluggable databases
 trigger_manage_service_in_pdb.sql Startup Trigger for <pdb>_rw/ro services
 vpdb.sql                     Display information from v$pdbs
