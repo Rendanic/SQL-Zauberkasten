@@ -10,6 +10,7 @@ hint.sql                     Search Hints in V$SQL_HINT
 inv_objects8i.sql            Displays invalid objects in the database
 inv_objects.sql              Displays invalid objects in the database
 lock_infoid.sql              List all Sessions with Locks on given object Id
+obj_count.sql                show number of object type for users
 obj_dependencies.sql         Displays dependencies for given object
 obj_infoid.sql               Displays information for given object_id
 obj_info.sql                 Displays information from dba_objects
