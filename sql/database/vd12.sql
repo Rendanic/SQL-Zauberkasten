@@ -1,7 +1,7 @@
 --
 -- Thorsten Bruhns (Thorsten.Bruhns@opitz-consulting.de)
 --
--- Date: 22.09.2015
+-- Date: 22.10.2018
 --
 -- Diesplay some basic information from the data dictionary
 -- Oracle 12c or newer required!
@@ -31,15 +31,18 @@ select dbid, name
 column force_logging format a13
 column NLS_CHARACTERSET format a16
 column NLS_NCHAR_CHARACTERSET format a22
+column local_undo format a10
 
 select vd.force_logging
       ,nls1.value NLS_CHARACTERSET
       ,nls2.value NLS_NCHAR_CHARACTERSET
+      ,nvl(lu.property_value, 'unknown') local_undo
 from v$database vd
 join nls_database_parameters nls1 on nls1.parameter = 'NLS_CHARACTERSET'
-join nls_database_parameters nls2 on nls2.parameter = 'NLS_NCHAR_CHARACTERSET';
+join nls_database_parameters nls2 on nls2.parameter = 'NLS_NCHAR_CHARACTERSET'
+left outer join database_properties lu on lu.property_name = 'LOCAL_UNDO_ENABLED';
 
-column Block_change_tracking format a30
+column Block_change_tracking format a21
 select status Block_change_tracking
 from V$BLOCK_CHANGE_TRACKING;
 
