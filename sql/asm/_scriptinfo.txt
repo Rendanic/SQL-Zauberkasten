@@ -7,3 +7,4 @@ asm_operation.sql            Display current running ASM Operations
 dgstat1.sql                  Get statistical data for a given Diskgroup
 used_space_dg_db.sql         List usage in Diskgroup for given Database. '%' can be used
 maas.sql                     Detailinformation for all Diskgroups
+maas2.sql                    Detailinformation for all Diskgroups without template information
