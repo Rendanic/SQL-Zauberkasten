@@ -27,8 +27,9 @@ set_ora_env() {
     export PS1="[\u@\h \W] (oenv) ("\$\{ORACLE_SID\}") \$ "
     echo "Starting new bash with Environment for ORACLE_SID: "$ORACLE_SID
     echo "(oenv) in bash prompt indicates a running bash from oenv.sh. Type exit for leaving."
-    echo "ORACLE_HOME: "$ORACLE_HOME
     echo "Version:    "$ORA_VERSION" (sqlplus -V)"
+    echo "ORACLE_HOME: "$ORACLE_HOME
+    echo "ORACLE_SID : "$ORACLE_SID
     bash
 }
 
