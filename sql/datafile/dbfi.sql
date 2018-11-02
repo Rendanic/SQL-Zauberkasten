@@ -1,15 +1,17 @@
 --
 -- Thorsten Bruhns (Thorsten.Bruhns@opitz-consulting.de)
--- $Id: dbfi.sql 66 2010-03-15 05:20:34Z tbr $
 --
 -- Displays information for Datafile (dbfi = DataBase File Information)
 --
+-- Version: 2
+-- Date: 02.11.2018
+
 set pages 300
 set lines 150
 
 column file_name format a60
 column tablespace_name format a20
-column mb format 99999
+column mb format 99999999
 column os format a6
 column id format 999
 column status format a11

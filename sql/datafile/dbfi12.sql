@@ -3,15 +3,15 @@
 --
 -- Datafile information with con_id
 --
--- Version: 1
--- Date: 18.12.2015
+-- Version: 2
+-- Date: 02.11.2018
 --
 set pages 300
 set lines 150
 
 column file_name format a60
 column tablespace_name format a20
-column mb format 99999
+column mb format 99999999
 column os format a6
 column id format 999
 column cdb format 999
