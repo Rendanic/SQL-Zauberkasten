@@ -1,6 +1,7 @@
 deprecated.sql               Displays deprecated parameters
 ksppi.sql                    information from x$ksppi (all init.ora-Parameters)
 nondefaultparam.sql          Displays all non default init.ora-Parameter
+nondefault12                 Displays all non default Parameter for CDB & PDB
 paraminfo.sql                Detailinfo for a parameter
 reset_parameter.sql          Removes a parameter from spfile for all instances
 spparameter.sql              Displays all Parameters from SPFILE
