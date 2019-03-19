@@ -62,8 +62,9 @@ set lines 145 pages 100
 column PATCH_ID format 99999999
 column PATCH_UID format 99999999
 column DESCRIPTION format a80
-column status format a10 
-column VERSION format a12
+column status format a8
+column VERSION format a9
+column ACTION format a8
 column applied format a9
 column bundle format a5
 
@@ -72,6 +73,7 @@ PROMPT sqlpatch information
 select PATCH_ID
      , PATCH_UID
      , VERSION
+     , ACTION
      , STATUS 
      , BUNDLE_SERIES bundle
      , substr(ACTION_TIME,1,9) applied
