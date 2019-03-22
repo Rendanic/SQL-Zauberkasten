@@ -12,6 +12,7 @@ log_hist.sql                 gv$log_history
 log_info.sql                 Get overview from v$log and v$standby_log
 mem_usage_all.sql            detail pga information for all sessions
 recyclebinusage.sql          recyclebin usage
+scn_scheme.sql               Some informations for SCN scheme
 vd.sql                       info from v$database
 dba_registry.sql             Displays information from dba_registry
 flash_logfile.sql            Information for flashback-logs

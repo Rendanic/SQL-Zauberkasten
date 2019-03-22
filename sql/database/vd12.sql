@@ -52,6 +52,7 @@ from V$BLOCK_CHANGE_TRACKING;
 @@redothread
 
 set feedback off
+@@scn_scheme.sql
 
 @@dba_registry
 set feedback off

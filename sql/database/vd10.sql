@@ -51,6 +51,7 @@ select PLATFORM_NAME
 @@redothread
 
 set feedback off
+@@scn_scheme.sql
 
 @@dba_registry
 set feedback off
