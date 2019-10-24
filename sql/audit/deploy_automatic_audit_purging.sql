@@ -1,6 +1,8 @@
 --
 -- Thorsten Bruhns (Thorsten.Bruhns@opitz-consulting.de)
--- $Id: details.sql 10 2008-11-11 10:25:06Z oracle $
+--
+-- Date: 24.10.2019
+-- Version: 0.2 
 --
 -- Deploy audit purge for 7 days
 -- sys.aud$ is moved to SYSAUX-Tablespace
@@ -32,7 +34,7 @@ prompt set last archive timestamp to a week before now
 begin
 DBMS_AUDIT_MGMT.SET_LAST_ARCHIVE_TIMESTAMP(
 audit_trail_type => DBMS_AUDIT_MGMT.AUDIT_TRAIL_AUD_STD,
-last_archive_time => sysdate - 7);
+last_archive_time => sysdate - &audit_archive_timestamp);
 exception
 	when others then
 	if sqlcode not in(46263)
