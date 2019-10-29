@@ -17,4 +17,5 @@ tab_histograms2.sql          Display Histograms of a table column
 tab_histograms_part.sql      Display Histograms of a table Partition column
 tab_history.sql              historical statistic information from wri$_optstat_tab_history
 tab_history2.sql             historical statistic information from wri$_optstat_tab_history
+tab_pending.sql              Show pending statistics from tables
 tab_stale.sql                display tables with stale statistics
