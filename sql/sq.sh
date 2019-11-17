@@ -10,15 +10,16 @@
 # 
 # we use 'sqlplus / as sysdba' when no parameter is given
 #
-# Version: 2
-# Date:    30.06.2018
+# Version: 3
+# Date: 17.11.2019
 
 set_env()
 {
 
-	sqshcurrdir=$(dirname $0)
-	rlwrapdir=${sqshcurrdir}/../rlwrap
-	SQLPLUSEXEC=${ORACLE_HOME}/bin/sqlplus
+	# shellcheck disable=SC2046
+	sqshcurrdir=$(dirname "$0")
+	rlwrapdir="${sqshcurrdir}/../rlwrap"
+	SQLPLUSEXEC="${ORACLE_HOME}/bin/sqlplus"
 
 	if [ ${#} -ne 0 ]
 	then
@@ -32,48 +33,48 @@ set_env()
 		fi
 	fi
 
-        export EDITOR=${EDITOR:-vi}
+        export EDITOR="${EDITOR:-vi}"
 
 	rlwrapoptions="-w 200 -i"
 
 	OSNAME=$(uname -o)
-	if [ ${OSNAME} = 'GNU/Linux' ]
+	if [ "${OSNAME}" = 'GNU/Linux' ]
 	then
 		# we are on linux
 		OSMACHINE=$(uname -m)
-		if [ ${OSMACHINE} = 'x86_64' ]
+		if [ "${OSMACHINE}" = 'x86_64' ]
 		then
 			RLWRAP=rlwrap_linux_x64
 		fi
-		if [ ${OSMACHINE} = 'i686' ]
+		if [ "${OSMACHINE}" = 'i686' ]
 		then
 			RLWRAP=rlwrap_linux
 		fi
 	fi
-	RLWRAPEXEC=${rlwrapdir}/${RLWRAP}
+	RLWRAPEXEC="${rlwrapdir}/${RLWRAP}"
 }
 
 check_env()
 {
-	if [ ! -x ${SQLPLUSEXEC} ]
+	if [ ! -x "${SQLPLUSEXEC}" ]
 	then
-		echo "sqlplus not found! "${SQLPLUSEXEC}
+		echo "sqlplus not found! ${SQLPLUSEXEC}"
 		exit 1
 	fi
 	
-	if [ ! -x ${RLWRAPEXEC} ]
+	if [ ! -x "${RLWRAPEXEC}" ]
 	then
-		echo "rlwrap not found! "${RLWRAPEXEC}
+		echo "rlwrap not found! ${RLWRAPEXEC}"
 		exit 2
 	fi
 }
 
 exec_sqlplus()
 {
-	${RLWRAPEXEC} ${rlwrapoptions} ${SQLPLUSEXEC} ${SQLPLUSPARAM}
+	"${RLWRAPEXEC}" "${rlwrapoptions}" "${SQLPLUSEXEC}" "${SQLPLUSPARAM}"
 }
 
 
-set_env ${*}
+set_env "${*}"
 check_env
 exec_sqlplus

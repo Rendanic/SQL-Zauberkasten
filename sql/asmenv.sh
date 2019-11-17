@@ -4,8 +4,8 @@
 #
 # Set shell environment for Grid-Infrastructure / Restart
 #
-# Version: 1
-# Date: 06.01.2018
+# Version: 2
+# Date: 17.11.2019
 
 OCRLOC=/etc/oracle/ocr.loc
 OLRLOC=/etc/oracle/olr.loc
@@ -18,20 +18,25 @@ fi
 . ${OCRLOC}
 . ${OLRLOC}
 
+# shellcheck disable=SC2154
 ORACLE_HOME=${crs_home}
-if [ -d ${ORACLE_HOME} ];then
+if [ -d "${ORACLE_HOME}" ];then
 
-    if [ ${local_only^^} = 'TRUE' ]; then
+    # shellcheck disable=SC2154
+    if [ "${local_only^^}" = 'TRUE' ]; then
         # Restart
         ORACLE_SID=+ASM
     else
         # Grid-Infrastructure
-        gi_nodeid=$(${crs_home}/bin/olsnodes -n | grep "^"$(${crs_home}/bin/olsnodes -l) | cut -f2)
-        ORACLE_SID="+ASM"${gi_nodeid}
+        # shellcheck disable=SC2046
+        gi_nodeid=$("${crs_home}"/bin/olsnodes -n | grep "^"$("${crs_home}"/bin/olsnodes -l) | cut -f2)
+        ORACLE_SID="+ASM${gi_nodeid}"
     fi
 
     export PATH=$ORACLE_HOME/bin:$PATH
     export LD_LIBRARY_PATH=${ORACLE_HOME}/lib:${LD_LIBRARY_PATH}
+
+    # shellcheck disable=SC2140
     export PS1="[\u@\h \W] (oenv) ("\$\{ORACLE_SID\}") \$ "
     export ORACLE_SID ORACLE_HOME
 

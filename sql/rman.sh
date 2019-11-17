@@ -10,11 +10,13 @@
 # 
 # we use 'rman target /' when no parameter is given
 #
+# Version: 2
+# Date: 17.11.2019
 
 set_env()
 {
 
-	sqshcurrdir=$(dirname $0)
+	sqshcurrdir=$(dirname "$0")
 	rlwrapdir=${sqshcurrdir}/../rlwrap
 	RMANEXEC=${ORACLE_HOME}/bin/rman
 
@@ -30,15 +32,15 @@ set_env()
 	rlwrapoptions="-w 200 -i"
 
 	OSNAME=$(uname -o)
-	if [ ${OSNAME} = 'GNU/Linux' ]
+	if [ "${OSNAME}" = 'GNU/Linux' ]
 	then
 		# we are on linux
 		OSMACHINE=$(uname -m)
-		if [ ${OSMACHINE} = 'x86_64' ]
+		if [ "${OSMACHINE}" = 'x86_64' ]
 		then
 			RLWRAP=rlwrap_linux_x64
 		fi
-		if [ ${OSMACHINE} = 'i686' ]
+		if [ "${OSMACHINE}" = 'i686' ]
 		then
 			RLWRAP=rlwrap_linux
 		fi
@@ -48,26 +50,25 @@ set_env()
 
 check_env()
 {
-	if [ ! -x ${RMANEXEC} ]
+	if [ ! -x "${RMANEXEC}" ]
 	then
-		echo "rman not found! "${RMANEXEC}
+		echo "rman not found! ${RMANEXEC}"
 		exit 1
 	fi
 	
-	if [ ! -x ${RLWRAPEXEC} ]
+	if [ ! -x "${RLWRAPEXEC}" ]
 	then
-		echo "rlwrap not found! "${RLWRAPEXEC}
+		echo "rlwrap not found! ${RLWRAPEXEC}"
 		exit 2
 	fi
 }
 
 exec_rman()
 {
-	${RLWRAPEXEC} ${rlwrapoptions} ${RMANEXEC} ${RMANPARAM}
+	"${RLWRAPEXEC}" "${rlwrapoptions}" "${RMANEXEC}" "${RMANPARAM}"
 }
 
 
-set_env ${*}
+set_env "${*}"
 check_env
 exec_rman
-

@@ -4,14 +4,14 @@
 #
 # automatically start the correct version of rlwrap
 #
-# Version: 1
-# Date:    14.10.2018
+# Version: 2
+# Date:    17.11.2019
 
+# shellcheck disable=SC2046
+rlwrapdir=$(dirname $(basename "$0"))/../rlwrap
 
-rlwrapdir=$(dirname $(basename $0))/../rlwrap
-
-if [ $(uname -i) = 'x86_64' ] ; then
+if [ "$(uname -i)" = 'x86_64' ] ; then
     rlwrapexe=${rlwrapdir}/rlwrap_linux_x64
 fi
 
-$rlwrapexe $*
+$rlwrapexe "$*"

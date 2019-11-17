@@ -1,7 +1,9 @@
 #!/bin/bash
 #
 # Thorsten Bruhns (Thorsten.Bruhns@opitz-consulting.de)
-# Date: 13.03.2017
+#
+# Version: 2
+# Date: 17.11.2019
 #
 # This script is a wrapper for sq.sh.
 # It starts sq.sh with SQLPATH to ./sql of Zauberkasten
@@ -10,7 +12,10 @@
 # Known issues:
 # SQLPLUS is not working under Oracle XE 11.2.0.2
 
-SQSHPATH=$(dirname $0)
-SQLPATH=$(dirname `readlink -f $0`); export SQLPATH
-${SQSHPATH}/sq.sh "$*"
+# shellcheck disable=SC2046
+SQSHPATH=$(dirname "$0")
+
+# shellcheck disable=SC2086,SC2046
+SQLPATH="$(dirname $(readlink -f $0))"; export SQLPATH
+"${SQSHPATH}"/sq.sh "$*"
 
