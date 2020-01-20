@@ -71,7 +71,7 @@ begin
       dbms_scheduler.create_job( job_name => v_job_name
         , job_type => 'STORED_PROCEDURE'
         , job_action => '"PERFSTAT"."STATSPACK"."SNAP"'
-        , repeat_interval => 'FREQ=HOURLY;BYTIME=5500'
+        , repeat_interval => 'FREQ=HOURLY; BYMINUTE=55'
         --, start_date => to_timestamp_tz('2019-09-06 17:30:00 Europe/Berlin', 'YYYY-MM-DD HH24:MI:SS TZR')
         , comments => 'Take Statspack snapshot'
         , auto_drop => FALSE
@@ -91,7 +91,7 @@ begin
       dbms_scheduler.create_job( job_name => 'STATSPACK_SNAP'
         , job_type => 'STORED_PROCEDURE'
         , job_action => '"PERFSTAT"."STATSPACK"."SNAP"'
-        , repeat_interval => 'FREQ=HOURLY;BYTIME=5500'
+        , repeat_interval => 'FREQ=HOURLY; BYMINUTE=55'
         --, start_date => to_timestamp_tz('2019-09-06 17:30:00 Europe/Berlin', 'YYYY-MM-DD HH24:MI:SS TZR')
         , comments => 'Take Statspack snapshot'
         , auto_drop => FALSE
