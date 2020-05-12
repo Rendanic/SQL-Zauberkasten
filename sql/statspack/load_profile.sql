@@ -1,7 +1,8 @@
 --
 -- Thorsten Bruhns (Thorsten.Bruhns@opitz-consulting.de)
 --
--- Date: 17.12.2017
+-- Date: 12.05.2020
+-- Version: 2
 --
 --  Load Profile from Statspack-Schema
 --
@@ -46,8 +47,8 @@ SELECT
     ) phys_reads,
     round(
         CASE snapints
-            WHEN 0   THEN logical_reads
-            ELSE(logical_reads / snapints)
+            WHEN 0   THEN physical_writes
+            ELSE(physical_writes / snapints)
         END
     ) phys_writes,
     round(
