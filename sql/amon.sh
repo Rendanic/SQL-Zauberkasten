@@ -54,4 +54,12 @@ fi
 
 test -x "$AMON" || (echo "amon missing or not executable: $AMON" ; exit 98)
 
+if [ -z "${LD_LIBRARY_PATH-}" ] ; then
+  LD_LIBRARY_PATH="${ORACLE_HOME}/lib"
+  export LD_LIBRARY_PATH
+else
+  LD_LIBRARY_PATH="${ORACLE_HOME}/lib:${LD_LIBRARY_PATH}"
+  export LD_LIBRARY_PATH
+fi
+
 "$AMON" "$@"
