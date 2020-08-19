@@ -54,6 +54,11 @@ from V$BLOCK_CHANGE_TRACKING;
 set feedback off
 @@scn_scheme.sql
 
+column filename format a25
+column version format 999
+
+select filename "TIMEZONE File" , version from V$TIMEZONE_FILE;
+
 @@dba_registry
 set lines 145 pages 100
 
