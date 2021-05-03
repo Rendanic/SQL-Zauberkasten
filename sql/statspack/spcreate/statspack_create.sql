@@ -9,6 +9,7 @@
 -- For Oracle < 11.2 install necessary jobs with statspack_job.sql
 -- --------------------------------------------------------------------------
 --
+-- 2021-05-03 U. Kuechler: Add index for faster querying of SQL Text
 -- 2019-09-09 U. Kuechler: Use Scheduler instead of DBMS_JOB
 -- 2015-09-03 U. Kuechler: Re-fill STATS$IDLE_EVENT with latest idle events
 -- 2016-06-23 U. Kuechler: Check for missing column bug in 12.1
@@ -116,6 +117,10 @@ SELECT job_name, last_start_date, next_run_date, enabled FROM user_scheduler_job
 delete from STATS$IDLE_EVENT;
 insert into STATS$IDLE_EVENT select name from V$EVENT_NAME where wait_class='Idle';
 commit;
+
+-- OPTIONAL: Faster querying of SQL Text by sql_id
+create index STATS$SQLTEXT_UK1 on STATS$SQLTEXT(sql_id, piece);
+
 
 -- Check for missing column bug in 12.1
 set feedback off
