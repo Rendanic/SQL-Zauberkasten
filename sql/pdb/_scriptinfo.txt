@@ -1,13 +1,18 @@
 check_plug_compatibility.sql helper script for plugin pdbs
+close.sql                    alter pluggable database close
 current.sql                  Get current PDB from session
 discard_state.sql            discard state for PDB after restart of cdb
 list_save_state.sql          list save states for PDBs
+open_ro.sql                  alter pluggable database open read only
+open_rw.sql                  alter pluggable database open read write
+restore_xml.sql              Execute dbms_pdb.recover
 save_state.sql               save state for PDB after restart of cdb
 script_true.sql              set "_ORACLE_SCRIPT"=true in session
 snaps.sql                    Display information about PDB Snapshots
 switch.sql                   Set session to container
+switchroot.sql               Set session to container CDB$ROOT
 sws.sql                      automatic SWitch to Singletenant PDB
 trigger_open_all.sql         Create Trigger for starting all pluggable databases
 trigger_manage_service_in_pdb.sql Startup Trigger for <pdb>_rw/ro services
 vpdb.sql                     Display information from v$pdbs
-pdb_incarnation.sql                     Display information for PDB Incarnations
+pdb_incarnation.sql          qDisplay information for PDB Incarnations
