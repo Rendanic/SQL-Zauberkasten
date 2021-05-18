@@ -7,6 +7,7 @@
 --
 -- 2021-05-18 U. Kuechler: Cover options from 10.1 to 19c.
 
+set lines 80 trimspool on pages 50000 feed off
 col value for a30
 
 with I as (select version from v$instance)
@@ -97,6 +98,10 @@ union
 select 'STAT_CATEGORY', CASE WHEN I.VERSION >= '12.2'
        THEN DBMS_STATS.get_prefs( 'STAT_CATEGORY' )
        ELSE '---' END AS pref FROM dual, i
+union
+select 'WAIT_TIME_TO_UPDATE_STATS', CASE WHEN I.VERSION >= '12.2'
+       THEN DBMS_STATS.get_prefs( 'WAIT_TIME_TO_UPDATE_STATS' )
+       ELSE '---' END AS pref FROM dual, i
 --/* ab 19 ---------------------------------------------------------------------
 union
 select 'AUTO_TASK_INTERVAL', CASE WHEN I.VERSION >= '19'
@@ -109,6 +114,10 @@ select 'AUTO_TASK_MAX_RUN_TIME', CASE WHEN I.VERSION >= '19'
 union
 select 'AUTO_TASK_STATUS', CASE WHEN I.VERSION >= '19'
        THEN DBMS_STATS.get_prefs( 'AUTO_TASK_STATUS' )
+       ELSE '---' END AS pref FROM dual, i
+union
+select 'ROOT_TRIGGER_PDB', CASE WHEN I.VERSION >= '19'
+       THEN DBMS_STATS.get_prefs( 'ROOT_TRIGGER_PDB' )
        ELSE '---' END AS pref FROM dual, i
 ------------------------------------------------------------------------------*/
 ;
