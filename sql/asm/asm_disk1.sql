@@ -1,9 +1,10 @@
 --
 -- Thorsten Bruhns (Thorsten.Bruhns@opitz-consulting.de)
--- $Id: asm_disk1.sql 167 2010-08-13 04:21:32Z tbr $
 --
 -- list information for all asm-disks
 --
+-- Version: 1
+-- Date: 09.11.2022
 
 set lines 120 pages 100
 
@@ -17,6 +18,7 @@ column dn format 999
 SELECT group_number gn
      , disk_number dn
      , name
+     , label
      , header_status
      , path 
 FROM V$ASM_DISK
