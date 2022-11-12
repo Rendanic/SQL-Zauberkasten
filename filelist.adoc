@@ -1,0 +1,7 @@
+.Used defaults in this guide
+[options="header,footer",format=csv,separator=";"]
+
+|=======================
+File;Description
+include::sql/adr/_scriptinfo.csv[]
+|=======================
