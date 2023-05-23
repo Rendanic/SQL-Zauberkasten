@@ -1,3 +1,4 @@
+archive_dest_status.sql      Status from v$archive_dest_status
 broker_config.sql            Status from v$dg_broker_config
 logstdb_events.sql           Displays information from DBA_LOGSTDBY_EVENTS
 logstdb_events_trx.sql       Displays trx-ids from DBA_LOGSTDBY_EVENTS
