@@ -29,3 +29,4 @@ vd10.sql                     info from gv$instance only 10g or newer
 vd12.sql                     info from gv$instance only 12c or newer
 vi.sql                       info from gv$instance
 sysmetric_history.sql        Info from v$sysmetric_history for last 10 min
+timezone.sql                 Diesplay timezone file from database
