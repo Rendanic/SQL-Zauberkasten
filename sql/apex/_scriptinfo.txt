@@ -1,2 +1,2 @@
 workspaces.sql               Display Informations for all APEX-Workspaces
-
+obsolete_apex_schemas.sql    Display obsolete APEX_-Schemas in Database
