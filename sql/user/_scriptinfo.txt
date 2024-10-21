@@ -1,6 +1,7 @@
 csv_privs4user_non_sys.sql   spool privs4user_non_sys as csv
 dba_tab_priv.sql             dba_tab_privs for an object
-network_acls.sql             dba_network_acls
+network_acls.sql             Information about network ACLs for users
+network_acl_privileges.sql   Info from DBA_NETWORK_ACL_PRIVILEGES
 privs4user.sql               all priviledges for a user 
 privs4user_spool.sql         all priviledges for a user in spool format
 profile.sql                  Info from dba_profiles
