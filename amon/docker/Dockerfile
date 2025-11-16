@@ -21,9 +21,9 @@ RUN cd /tmp/ \
     && chmod 755 amon_19c_ol9 \
     && mv amon_19c_ol9 /usr/local/bin/amon \
     && microdnf clean all \
-    && rm -rf /var/cache/yum \
-    && rm -rf /var/cache/dnf \
-    && rm -rf /tmp/* \
-    && rm -rf /var/tmp/*
+    && (rm -rf /var/cache/yum || true) \
+    && (rm -rf /var/cache/dnf || true) \
+    && (rm -rf /tmp/* || true) \
+    && (rm -rf /var/tmp/* || true )
 
 CMD ["amon"]
