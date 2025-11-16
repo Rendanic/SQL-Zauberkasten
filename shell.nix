@@ -15,6 +15,7 @@ pkgs.mkShell {
     pkgs.ncdu
     pkgs.tig
     pkgs.tree
+    pkgs.act
     pkgs.jdk21
     pkgs.go-task
     pkgs.rlwrap
