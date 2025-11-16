@@ -5,8 +5,8 @@ ARG instantclient_version=19.29
 ENV ORACLE_HOME=/usr/lib/oracle/${instantclient_version}/client64
 ENV LD_LIBRARY_PATH=/usr/lib/oracle/${instantclient_version}/client64/lib
 
-RUN  microdnf -y install oracle-instantclient-release-el9 \
-     && microdnf -y install \
+RUN  microdnf -y install oracle-instantclient-release-el9
+RUN  microdnf -y install \
         oracle-instantclient${instantclient_version}-basic \
         oracle-instantclient${instantclient_version}-devel \
         oracle-instantclient${instantclient_version}-sqlplus \
