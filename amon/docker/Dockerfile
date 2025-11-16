@@ -20,10 +20,7 @@ RUN cd /tmp/ \
     && gunzip ./amon_19c_ol9.gz \
     && chmod 755 amon_19c_ol9 \
     && mv amon_19c_ol9 /usr/local/bin/amon \
-    && microdnf clean all \
-    && (rm -rf /var/cache/yum || true) \
-    && (rm -rf /var/cache/dnf || true) \
-    && (rm -rf /tmp/* || true) \
-    && (rm -rf /var/tmp/* || true )
+    && rm -f /tmp/amon* \
+    && microdnf clean all
 
 CMD ["amon"]
