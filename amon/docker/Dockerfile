@@ -11,8 +11,7 @@ RUN  microdnf -y install oracle-instantclient-release-el9 \
         oracle-instantclient${instantclient_version}-devel \
         oracle-instantclient${instantclient_version}-sqlplus \
         wget \
-        gzip && \
-     rm -rf /var/cache/yum
+        gzip
 
 RUN cd /tmp/ \
     && wget -q https://github.com/asimondev/amon/releases/download/v2.0.1/amon.tar \
