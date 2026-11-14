@@ -8,8 +8,8 @@
 set serveroutput on size 1000000
 set trimspool on
 
-set lines 120
-set pages 1000
+set linesize 120
+set pagesize 1000
 
 set termout off
 
