@@ -21,7 +21,7 @@ The SQL-Zauberkasten is a collection of scripts for Oracle databases: more than 
 | `sql/` | The scripts themselves, grouped by topic. `table` holds everything about tables, `session` everything about sessions, and so on. |
 | `sql/ee/` | Scripts that use Enterprise Edition features (see [licensing](#enterprise-edition-and-licensing)). |
 | `asm/` | `kfod_disks.sh` shows the details of ASM disks for a given disk string. |
-| `amon/` | amon, a console monitor for Oracle databases, for 10.2, 11.2 and 19c (Oracle Linux 7/8/9 and Ubuntu 22.04). `amon/docker` contains a Dockerfile (OL9 based) to run it as a container. |
+| `amon/` | amon, a console monitor for Oracle databases, for 10.2, 11.2 and 19c (Oracle Linux 7/8/9 and Ubuntu 22.04). `amon/amon.sh` starts the 19c binary that matches the operating system and passes all parameters on. `amon/docker` contains a Dockerfile (OL9 based) to run it as a container. |
 | `snapper/` | Scripts to download Tanel Poder's Session Snapper. |
 | `getMOSPatch/` | Git submodule [MarisElsins/getMOSPatch](https://github.com/MarisElsins/getMOSPatch), downloads patches from My Oracle Support. |
 | `rlwrap/` | Old prebuilt rlwrap 0.32 binaries (Linux 32/64 bit, SPARC). They crash on current systems and are no longer used automatically. Install rlwrap from your distribution instead (`dnf install rlwrap`). |
