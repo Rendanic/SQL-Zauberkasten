@@ -3,13 +3,10 @@
 # See https://pre-commit.com/hooks.html for more hooks
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.5.0
+    rev: v6.0.0
     hooks:
       - id: trailing-whitespace
-        exclude: ^roles/.*/README.md
       - id: end-of-file-fixer
-      - id: check-symlinks
-      - id: check-added-large-files
       - id: check-merge-conflict
       - id: detect-private-key
       - id: forbid-new-submodules
@@ -20,4 +17,4 @@ repos:
     rev: v0.0.18
     hooks:
       - id: shellcheck
-      # - id: shfmt
+      - id: shfmt
