@@ -141,10 +141,11 @@ The repository uses [pre-commit](https://pre-commit.com/) to check every commit.
 | Hook | Purpose |
 |---|---|
 | `trailing-whitespace`, `end-of-file-fixer` | Clean whitespace and file endings (they fix the files themselves, so the first commit fails and you commit again). |
-| `check-symlinks`, `check-added-large-files`, `check-merge-conflict` | Broken symlinks, large files and leftover merge markers. |
+| `check-merge-conflict` | Leftover merge markers. |
 | `detect-private-key`, `forbid-new-submodules` | No private keys, no new submodules. |
 | `check-executables-have-shebangs` | Executable files need a shebang. |
 | `shellcheck` | Lints all shell scripts. |
+| `shfmt` | Checks the shell style (2 spaces, `-i 2 -ci`). |
 
 The hooks need `shellcheck`, so work inside the `nix-shell` (see above). It provides `pre-commit`, `shellcheck` and `shfmt`:
 
@@ -158,7 +159,7 @@ pre-commit autoupdate         # update the hook versions
 
 Commit from inside the nix-shell as well. Outside of it the `shellcheck` hook cannot find its tool. With direnv the shell is loaded automatically.
 
-`shfmt` is installed but its hook is disabled in `.pre-commit-config.yaml`. Enable it there if you want enforced shell formatting.
+To fix a `shfmt` finding, format the file with `shfmt -w -i 2 -ci <file>` (it is part of the nix-shell).
 
 ## Contributing
 
