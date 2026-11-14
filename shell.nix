@@ -12,6 +12,8 @@ pkgs.mkShell {
   buildInputs = [
     pkgs.pre-commit
     pkgs.tig
+    pkgs.shellcheck
+    pkgs.shfmt
     pkgs.jdk21
     pkgs.go-task
     pkgs.renovate
