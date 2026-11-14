@@ -1,17 +1,10 @@
 #!/bin/bash
 #
-# Thorsten Bruhns (Thorsten.Bruhns@googlemail.com)
-#
-# automatically start the correct version of rlwrap
-#
-# Version: 1
-# Date:    14.10.2018
+# Starts the best available rlwrap (see zk_lib.sh) with all parameters.
 
+set -u
+# shellcheck source=zk_lib.sh
+. "$(dirname "$(readlink -f "$0")")/zk_lib.sh"
 
-rlwrapdir=$(dirname $(basename $0))/../rlwrap
-
-if [ $(uname -i) = 'x86_64' ] ; then
-    rlwrapexe=${rlwrapdir}/rlwrap_linux_x64
-fi
-
-$rlwrapexe $*
+rlwrap_bin=$(zk_find_rlwrap) || zk_die "no rlwrap found"
+exec "${rlwrap_bin}" "$@"

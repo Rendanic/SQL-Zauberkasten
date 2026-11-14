@@ -1,79 +1,57 @@
-#!/bin/bash 
+#!/bin/bash
 #
-# This script starts sqlplus with 'sqlplus / as sysdba'
-# rlwrap is used for getting a readline history of commands!
-#
-# Currently we support Linux 32/64 bit
+# Starts sqlplus with 'sqlplus / as sysdba' ('/ as sysasm' for ASM instances).
+# rlwrap is used for a readline history of commands.
 #
 # Parameters: all values are passed to sqlplus like:
-# sqlplus <all parameters>
-# 
-# we use 'sqlplus / as sysdba' when no parameter is given
+#   sqlplus <all parameters>
+# Without parameters 'sqlplus / as sysdba' is used.
 #
-# Version: 2
-# Date:    30.06.2018
+# Without a database environment (no ORACLE_HOME or no sqlplus in it) SQLcl is
+# used instead, e.g. from the nix-shell of the Zauberkasten. SQLcl cannot
+# log in with operating system authentication, so without parameters it starts
+# unconnected ('sql /nolog'). Connect with: connect user@//host:port/service
+#
+# Environment: see zk_lib.sh (ZK_CLIENT, ZK_RLWRAP, ZK_NORLWRAP, ZK_RLWRAP_OPT)
 
-set_env()
-{
+set -u
+# shellcheck source=zk_lib.sh
+. "$(dirname "$(readlink -f "$0")")/zk_lib.sh"
 
-	sqshcurrdir=$(dirname $0)
-	rlwrapdir=${sqshcurrdir}/../rlwrap
-	SQLPLUSEXEC=${ORACLE_HOME}/bin/sqlplus
+client=${ZK_CLIENT:-}
+if [ -z "${client}" ]; then
+    if [ -x "${ORACLE_HOME:-/nonexistent}/bin/sqlplus" ]; then
+        client=sqlplus
+    else
+        client=sqlcl
+    fi
+fi
 
-	if [ ${#} -ne 0 ]
-	then
-		SQLPLUSPARAM="${*}"
-	else
-		if [ "${ORACLE_SID:0:1}" == '+' ]
-		then
-			SQLPLUSPARAM="/ as sysasm"
-		else
-			SQLPLUSPARAM="/ as sysdba"
-		fi
-	fi
+case "${client}" in
+    sqlplus)
+        zk_require_oracle_home sqlplus
+        sqlclient=${ORACLE_HOME}/bin/sqlplus
+        if [ $# -eq 0 ]; then
+            sid=${ORACLE_SID:-}
+            if [ "${sid:0:1}" = '+' ]; then
+                set -- "/ as sysasm"
+            else
+                set -- "/ as sysdba"
+            fi
+        fi
+        ;;
+    sqlcl)
+        sqlclient=$(zk_find_sqlcl) || zk_die \
+            "neither sqlplus (ORACLE_HOME) nor SQLcl found; set ORACLE_HOME or start 'nix-shell'"
+        echo "sq.sh: using SQLcl (${sqlclient}) instead of sqlplus" >&2
+        if [ $# -eq 0 ]; then
+            echo "sq.sh: not connected, use: connect user@//host:port/service" >&2
+            set -- /nolog
+        fi
+        ;;
+    *)
+        zk_die "ZK_CLIENT must be sqlplus or sqlcl, not '${client}'"
+        ;;
+esac
 
-        export EDITOR=${EDITOR:-vi}
-
-	rlwrapoptions="-w 200 -i"
-
-	OSNAME=$(uname -o)
-	if [ ${OSNAME} = 'GNU/Linux' ]
-	then
-		# we are on linux
-		OSMACHINE=$(uname -m)
-		if [ ${OSMACHINE} = 'x86_64' ]
-		then
-			RLWRAP=rlwrap_linux_x64
-		fi
-		if [ ${OSMACHINE} = 'i686' ]
-		then
-			RLWRAP=rlwrap_linux
-		fi
-	fi
-	RLWRAPEXEC=${rlwrapdir}/${RLWRAP}
-}
-
-check_env()
-{
-	if [ ! -x ${SQLPLUSEXEC} ]
-	then
-		echo "sqlplus not found! "${SQLPLUSEXEC}
-		exit 1
-	fi
-	
-	if [ ! -x ${RLWRAPEXEC} ]
-	then
-		echo "rlwrap not found! "${RLWRAPEXEC}
-		exit 2
-	fi
-}
-
-exec_sqlplus()
-{
-	${RLWRAPEXEC} ${rlwrapoptions} ${SQLPLUSEXEC} ${SQLPLUSPARAM}
-}
-
-
-set_env ${*}
-check_env
-exec_sqlplus
+zk_run "${sqlclient}" "$@"
