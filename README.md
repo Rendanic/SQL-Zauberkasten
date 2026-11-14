@@ -8,6 +8,7 @@ The SQL-Zauberkasten is a collection of scripts for Oracle databases: more than 
 - [Finding a script](#finding-a-script)
 - [Getting started](#getting-started)
 - [Using the Zauberkasten on hosts without Oracle (nix-shell)](#using-the-zauberkasten-on-hosts-without-oracle-nix-shell)
+  - [Keeping SQLcl up to date (Renovate)](#keeping-sqlcl-up-to-date-renovate)
 - [Enterprise Edition and licensing](#enterprise-edition-and-licensing)
 - [Contributing](#contributing)
 
@@ -69,7 +70,7 @@ export ORACLE_HOME=... ORACLE_SID=...
 
 - [SQLcl](https://www.oracle.com/database/sqldeveloper/technologies/sqlcl/) (downloaded and unpacked by Nix, no Oracle account needed on your side), available as `sql`. The path is also exported as `SQLCL_BIN`.
 - JDK 21, which SQLcl needs
-- [go-task](https://taskfile.dev), `pre-commit` and `tig`
+- [go-task](https://taskfile.dev), [Renovate](https://docs.renovatebot.com/), `jq`, `pre-commit` and `tig`
 
 ### Usage
 
@@ -94,6 +95,19 @@ Notes:
 - The scripts that need `SYSDBA` operating system authentication (`/ as sysdba`) only work on the database host itself. Connect with a user that has the required privileges instead.
 - `rman.sh`, `rlwrap.sh` and the other helpers in `sql/` are meant for hosts with an Oracle installation and are not part of this workflow.
 - The first start downloads SQLcl and needs network access.
+
+### Keeping SQLcl up to date (Renovate)
+
+The SQLcl version is set in `shell.nix` (`sqlclVersion`). [Renovate](https://docs.renovatebot.com/) keeps it current: `renovate.json` defines a custom datasource that reads the latest version from the Homebrew cask API (`https://formulae.brew.sh/api/cask/sqlcl.json`), because Oracle offers no machine-readable version feed. When a new release appears, Renovate opens a pull request that changes `sqlclVersion`. This requires the Renovate GitHub app to be enabled for the repository.
+
+`shell.nix` downloads SQLcl with `builtins.fetchTarball` and no hash, so the pull request needs no hash update. The drawback is that the download is not pinned and not verified.
+
+You can run Renovate locally with go-task inside the nix-shell:
+
+| Task | Purpose |
+|---|---|
+| `task renovate:check` | Validates `renovate.json` (strict). |
+| `task renovate:report` | Dry run: runs Renovate locally and prints the available updates, e.g. `shell.nix: sqlcl 26.1.0.086.1709 -> 26.3.1.301.1413`. Needs network access, creates no pull requests, and writes `renovate-report.json` (git-ignored). |
 
 ## Enterprise Edition and licensing
 

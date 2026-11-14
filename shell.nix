@@ -1,10 +1,11 @@
 { pkgs ? import <nixpkgs> {} }:
 
 let
-  myZip = pkgs.fetchzip {
-    # Use `nix-prefetch-url --unpack <url>` to get this
-    url = "https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-26.1.0.086.1709.zip";
-    sha256 = "04l5bdbaga8f7cmfgk6i980klqi70h96yvzfa52nd6pphfskvqkz";
+  # Version is updated by Renovate (see renovate.json).
+  # No hash on purpose: fetchTarball is not pinned and changes with every release.
+  sqlclVersion = "26.1.0.086.1709";
+  myZip = builtins.fetchTarball {
+    url = "https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-${sqlclVersion}.zip";
   };
 in
 pkgs.mkShell {
@@ -13,6 +14,8 @@ pkgs.mkShell {
     pkgs.tig
     pkgs.jdk21
     pkgs.go-task
+    pkgs.renovate
+    pkgs.jq
   ];
 
   shellHook = ''

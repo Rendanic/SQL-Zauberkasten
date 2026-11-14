@@ -1,0 +1,32 @@
+# https://taskfile.dev
+# Run inside nix-shell (renovate and jq come from shell.nix).
+version: "3"
+
+vars:
+  RENOVATE_REPORT: renovate-report.json
+
+tasks:
+  default:
+    cmds:
+      - task --list
+    silent: true
+
+  renovate:check:
+    desc: Validate renovate.json (strict)
+    cmds:
+      - renovate-config-validator --strict renovate.json
+
+  renovate:report:
+    desc: Dry-run Renovate locally and list available updates (needs network, no PRs are created)
+    deps:
+      - renovate:check
+    cmds:
+      - >-
+        renovate --platform=local
+        --report-type=file --report-path={{.RENOVATE_REPORT}}
+      - >-
+        jq -r '
+        .repositories[].packageFiles | to_entries[] | .key as $mgr | .value[] |
+        .packageFile as $file | .deps[] | select((.updates // []) | length > 0) |
+        "\($file): \(.depName) \(.currentValue) -> \([.updates[].newVersion] | join(", "))"
+        ' {{.RENOVATE_REPORT}}

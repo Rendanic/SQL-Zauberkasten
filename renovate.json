@@ -1,0 +1,24 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "customDatasources": {
+    "sqlcl": {
+      "defaultRegistryUrlTemplate": "https://formulae.brew.sh/api/cask/sqlcl.json",
+      "format": "json",
+      "transformTemplates": [
+        "{\"releases\": [{\"version\": version}], \"homepage\": homepage}"
+      ]
+    }
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "SQLcl version in shell.nix",
+      "managerFilePatterns": ["/(^|/)shell\\.nix$/"],
+      "matchStrings": ["sqlclVersion = \"(?<currentValue>[0-9][0-9.]+)\";"],
+      "datasourceTemplate": "custom.sqlcl",
+      "depNameTemplate": "sqlcl",
+      "versioningTemplate": "loose"
+    }
+  ]
+}
