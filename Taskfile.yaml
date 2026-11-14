@@ -16,6 +16,11 @@ tasks:
     cmds:
       - renovate-config-validator --strict renovate.json
 
+  renovate:ocenv:
+    desc: Check that sql/ocenv is unchanged against the blob in tools/renovate/ocenv.version
+    cmds:
+      - tools/renovate/ocenv_update.sh --check
+
   renovate:report:
     desc: Dry-run Renovate locally and list available updates (needs network, no PRs are created)
     deps:

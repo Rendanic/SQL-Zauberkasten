@@ -110,11 +110,14 @@ The SQLcl version is set in `shell.nix` (`sqlclVersion`). [Renovate](https://doc
 
 `shell.nix` downloads SQLcl with `builtins.fetchTarball` and no hash, so the pull request needs no hash update. The drawback is that the download is not pinned and not verified.
 
+Renovate also keeps `sql/ocenv` current. The file comes from [opitzconsulting/oracle-scripts](https://github.com/opitzconsulting/oracle-scripts/blob/main/ocenv). `tools/renovate/ocenv.version` records the upstream version (the committer date of the last upstream commit), the commit and the git blob of `sql/ocenv`. A custom datasource reads the commits of `ocenv` from the GitHub API. When there is a new commit, Renovate runs `tools/renovate/ocenv_update.sh` as a post-upgrade task, which replaces `sql/ocenv` and updates `ocenv.version`. This only works on a Renovate that allows this command (`RENOVATE_ALLOWED_COMMANDS`, i.e. self-hosted).
+
 You can run Renovate locally with go-task inside the nix-shell:
 
 | Task | Purpose |
 |---|---|
 | `task renovate:check` | Validates `renovate.json` (strict). |
+| `task renovate:ocenv` | Checks that `sql/ocenv` still matches the upstream version recorded in `tools/renovate/ocenv.version`. |
 | `task renovate:report` | Dry run: runs Renovate locally and prints the available updates, e.g. `shell.nix: sqlcl 26.1.0.086.1709 -> 26.3.1.301.1413`. Needs network access, creates no pull requests, and writes `renovate-report.json` (git-ignored). |
 
 ## Enterprise Edition and licensing

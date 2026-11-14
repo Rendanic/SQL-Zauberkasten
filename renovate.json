@@ -1,7 +1,26 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": ["config:recommended"],
+  "packageRules": [
+    {
+      "description": "ocenv (sql/ocenv) from opitzconsulting/oracle-scripts: the file is part of the Zauberkasten, tools/renovate/ocenv_update.sh replaces it and updates tools/renovate/ocenv.version",
+      "matchDatasources": ["custom.ocenv"],
+      "separateMajorMinor": false,
+      "postUpgradeTasks": {
+        "commands": ["tools/renovate/ocenv_update.sh '{{{newVersion}}}'"],
+        "fileFilters": ["sql/ocenv", "tools/renovate/ocenv.version"]
+      }
+    }
+  ],
   "customDatasources": {
+    "ocenv": {
+      "description": "Commits of ocenv in opitzconsulting/oracle-scripts, version is the committer date in UTC (YYYY.MMDD.HHMMSS)",
+      "defaultRegistryUrlTemplate": "https://api.github.com/repos/opitzconsulting/oracle-scripts/commits?path=ocenv&sha=main&per_page=100",
+      "format": "json",
+      "transformTemplates": [
+        "{ \"releases\": [$.{ \"version\": $fromMillis($toMillis(commit.committer.date), '[Y0001].[M01][D01].[H01][m01][s01]'), \"releaseTimestamp\": commit.committer.date, \"changelogUrl\": html_url }] }"
+      ]
+    },
     "sqlcl": {
       "defaultRegistryUrlTemplate": "https://formulae.brew.sh/api/cask/sqlcl.json",
       "format": "json",
@@ -18,6 +37,15 @@
       "matchStrings": ["sqlclVersion = \"(?<currentValue>[0-9][0-9.]+)\";"],
       "datasourceTemplate": "custom.sqlcl",
       "depNameTemplate": "sqlcl",
+      "versioningTemplate": "loose"
+    },
+    {
+      "description": "ocenv from opitzconsulting/oracle-scripts: version is the committer date of the last commit of ocenv (see tools/renovate/ocenv.version)",
+      "customType": "regex",
+      "managerFilePatterns": ["/^tools/renovate/ocenv\\.version$/"],
+      "matchStrings": [
+        "#\\s*renovate:\\s*datasource=(?<datasource>\\S+)\\s+depName=(?<depName>\\S+)\\s*\\nversion:\\s*(?<currentValue>[0-9.]+)"
+      ],
       "versioningTemplate": "loose"
     }
   ]
