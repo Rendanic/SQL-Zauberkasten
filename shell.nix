@@ -3,7 +3,7 @@
 let
   # Version is updated by Renovate (see renovate.json).
   # No hash on purpose: fetchTarball is not pinned and changes with every release.
-  sqlclVersion = "26.1.0.086.1709";
+  sqlclVersion = "26.3.1.301.1413";
   myZip = builtins.fetchTarball {
     url = "https://download.oracle.com/otn_software/java/sqldeveloper/sqlcl-${sqlclVersion}.zip";
   };
