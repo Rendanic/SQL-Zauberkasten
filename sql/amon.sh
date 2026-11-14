@@ -22,10 +22,13 @@ amonbasedir="$(dirname $(basename $0))/../amon"
 get_amonminversion() {
 
   SQLPLUS="${ORACLE_HOME}/bin/sqlplus"
-  test -x "$SQLPLUS" || (echo "sqlplus not found. Please check Oracle Environment!" ; exit 100)
+  test -x "$SQLPLUS" || (
+    echo "sqlplus not found. Please check Oracle Environment!"
+    exit 100
+  )
 
   oraversion=$("$SQLPLUS" -V | grep "SQL" | cut -d" " -f3 | cut -d"." -f1-2)
-  if [ "$oraversion" = "10.2" ] ; then
+  if [ "$oraversion" = "10.2" ]; then
     # we are on 10.2!
     echo "10.2"
   else
@@ -36,10 +39,10 @@ get_amonminversion() {
 #
 # MAIN
 #
-if [ "$(uname -o)" = "GNU/Linux" ] ; then
+if [ "$(uname -o)" = "GNU/Linux" ]; then
   # we are on Linux!
 
-  if [ -f "/etc/redhat-release" ] ; then
+  if [ -f "/etc/redhat-release" ]; then
     # we are on RedHat / OracleLinux!
     AMON="${amonbasedir}/$(get_amonminversion)/amon64_ol5_$(get_amonminversion)"
   else
@@ -52,9 +55,12 @@ else
   echo "Cannot start amon on Linux. Unknown Distribution."
 fi
 
-test -x "$AMON" || (echo "amon missing or not executable: $AMON" ; exit 98)
+test -x "$AMON" || (
+  echo "amon missing or not executable: $AMON"
+  exit 98
+)
 
-if [ -z "${LD_LIBRARY_PATH-}" ] ; then
+if [ -z "${LD_LIBRARY_PATH-}" ]; then
   LD_LIBRARY_PATH="${ORACLE_HOME}/lib"
   export LD_LIBRARY_PATH
 else

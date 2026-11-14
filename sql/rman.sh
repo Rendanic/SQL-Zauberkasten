@@ -16,7 +16,7 @@ set -u
 zk_require_oracle_home rman
 
 if [ $# -eq 0 ]; then
-    set -- target /
+  set -- target /
 fi
 
 zk_run "${ORACLE_HOME}/bin/rman" "$@"
