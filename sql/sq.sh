@@ -54,4 +54,6 @@ case "${client}" in
     ;;
 esac
 
+# tab completion of @script (rlwrap filter), only for the SQL client, see ../rlwrap/README.md
+export ZK_COMPLETE_SQL=1
 zk_run "${sqlclient}" "$@"

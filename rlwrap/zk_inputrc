@@ -1,0 +1,9 @@
+# SQL-Zauberkasten: key binding for the rlwrap filter zk_filter.py.
+#
+# rlwrap is started with INPUTRC pointing to this file, which replaces ~/.inputrc,
+# so the usual files are read first (your own bindings keep working).
+$include /etc/inputrc
+$include ~/.inputrc
+
+# Alt-h: show the description and the parameters of the @script on the line
+"\eh": rlwrap-hotkey-without-history

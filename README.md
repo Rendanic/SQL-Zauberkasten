@@ -24,7 +24,7 @@ The SQL-Zauberkasten is a collection of scripts for Oracle databases: more than 
 | `amon/` | amon, a console monitor for Oracle databases, for 10.2, 11.2 and 19c (Oracle Linux 7/8/9 and Ubuntu 22.04). `amon/amon.sh` starts the 19c binary that matches the operating system and passes all parameters on. `amon/docker` contains a Dockerfile (OL9 based) to run it as a container. |
 | `snapper/` | Scripts to download Tanel Poder's Session Snapper. |
 | `getMOSPatch/` | Git submodule [MarisElsins/getMOSPatch](https://github.com/MarisElsins/getMOSPatch), downloads patches from My Oracle Support. |
-| `rlwrap/` | Old prebuilt rlwrap 0.32 binaries (Linux 32/64 bit, SPARC). They crash on current systems and are no longer used automatically. Install rlwrap from your distribution instead (`dnf install rlwrap`). |
+| `rlwrap/` | Everything about rlwrap: the filter for the tab completion of `@script` in `sq.sh` (see `rlwrap/README.md`) and the choice of the rlwrap binary. The installed rlwrap is used (`dnf install rlwrap`); the old prebuilt 0.32 binaries (they crashed on current systems) are gone, they are still in the Git history. |
 
 Topics in `sql/` include:
 
@@ -51,7 +51,7 @@ The `.sh` scripts in `sql/` make everyday use easier:
 
 | Script | Purpose |
 |---|---|
-| `sq.sh` | Starts `rlwrap sqlplus / as sysdba` (or `/ as sysasm` when the SID starts with `+`). It uses the `rlwrap` from your `PATH` (or the one in `ZK_RLWRAP`) and falls back to plain sqlplus with a hint when there is none. Set `ZK_NORLWRAP=1` to skip rlwrap. Without a database environment it uses SQLcl instead (see the nix-shell chapter). Any parameters are passed on to sqlplus. |
+| `sq.sh` | Starts `rlwrap sqlplus / as sysdba` (or `/ as sysasm` when the SID starts with `+`). It uses the `rlwrap` from your `PATH` (or the one in `ZK_RLWRAP`) and falls back to plain sqlplus with a hint when there is none. Set `ZK_NORLWRAP=1` to skip rlwrap. With rlwrap, Tab behind `@`, `@@` and `start` completes the scripts in the directory tree of `SQLPATH` (see `rlwrap/README.md`, `ZK_NOCOMPLETE=1` switches it off). Without a database environment it uses SQLcl instead (see the nix-shell chapter). Any parameters are passed on to sqlplus. |
 | `sqzk.sh` | Wrapper for `sq.sh` that sets `SQLPATH` to the `sql` directory of the Zauberkasten, so all scripts can be called without a path. |
 | `rman.sh` | Same idea as `sq.sh`, for RMAN. |
 | `rlwrap.sh` | Starts the rlwrap that the scripts would use. |

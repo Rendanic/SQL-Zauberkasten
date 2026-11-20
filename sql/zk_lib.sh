@@ -8,12 +8,20 @@
 #   ZK_RLWRAP     full path of the rlwrap binary to use (overrides detection)
 #   ZK_NORLWRAP   set to 1 to run without rlwrap (no readline history)
 #   ZK_RLWRAP_OPT options for rlwrap (default: -w 200 -i)
+#   ZK_NOCOMPLETE set to 1 to switch off the tab completion of @script in sq.sh
+#                 (see ../rlwrap/README.md)
 #   ZK_CLIENT     sqlplus | sqlcl: force the client of sq.sh (default: sqlplus
 #                 from ORACLE_HOME, else SQLcl)
 #   SQLCL_BIN     path of SQLcl (set by the nix-shell), else 'sql' from PATH
 
 ZK_LIB_DIR=$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")
-ZK_RLWRAP_DIR=${ZK_LIB_DIR}/../rlwrap
+ZK_RLWRAP_DIR=$(cd "${ZK_LIB_DIR}/../rlwrap" 2>/dev/null && pwd || echo "${ZK_LIB_DIR}/../rlwrap")
+
+# Tab completion for @script (rlwrap filter). Optional: without the file everything works as before.
+if [ -r "${ZK_RLWRAP_DIR}/zk_completion.sh" ]; then
+  # shellcheck source=../rlwrap/zk_completion.sh
+  . "${ZK_RLWRAP_DIR}/zk_completion.sh"
+fi
 
 zk_die() {
   echo "$(basename "$0"): $*" >&2
@@ -21,7 +29,8 @@ zk_die() {
 }
 
 # Prints the path of an rlwrap binary that can be started.
-# Order: ZK_RLWRAP, rlwrap from PATH.
+# Order: ZK_RLWRAP, rlwrap from PATH (an installed rlwrap always wins),
+#        the bundled static rlwrap of this platform (only if none is installed).
 # Returns 1 if none is found.
 zk_find_rlwrap() {
   local cand
@@ -37,9 +46,14 @@ zk_find_rlwrap() {
     return 0
   fi
 
-  # The old static binaries in ../rlwrap (0.32) crash or hang on current
-  # systems and containers. They are not used automatically; point
-  # ZK_RLWRAP to one of them if you really need it.
+  # No rlwrap installed: the static one in ../rlwrap/static/<uname -m>/rlwrap, if there
+  # is one for this platform and it starts.
+  cand=${ZK_RLWRAP_DIR}/static/$(uname -m)/rlwrap
+  if [ -x "${cand}" ] && "${cand}" --version >/dev/null 2>&1; then
+    echo "${cand}"
+    return 0
+  fi
+
   return 1
 }
 
@@ -52,7 +66,11 @@ zk_run() {
 
   if [ "${ZK_NORLWRAP:-0}" != 1 ] && [ -t 0 ] && rlwrap_bin=$(zk_find_rlwrap); then
     read -r -a opts <<<"${ZK_RLWRAP_OPT:--w 200 -i}"
-    exec "${rlwrap_bin}" "${opts[@]}" "$@"
+    ZK_COMPLETION_OPTS=()
+    if type zk_completion_setup >/dev/null 2>&1; then
+      zk_completion_setup "${rlwrap_bin}"
+    fi
+    exec "${rlwrap_bin}" "${opts[@]}" ${ZK_COMPLETION_OPTS[@]+"${ZK_COMPLETION_OPTS[@]}"} "$@"
   fi
 
   if [ "${ZK_NORLWRAP:-0}" != 1 ] && [ -t 0 ]; then
